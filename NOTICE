@@ -1,0 +1,22 @@
+Ainvil
+======
+
+Ainvil is a fork of opencode, an open source AI coding agent.
+
+Upstream project : opencode  (https://github.com/anomalyco/opencode)
+Forked at        : v2.2.6  (tag, commit dc2ffcf8bf26f9e669b6aa22b95f50e12be15e06)
+Fork date        : 2026-11-12
+License          : MIT (unchanged; see the LICENSE file)
+
+opencode is Copyright (c) 2025 opencode and is distributed under the MIT
+License. That copyright notice and the full MIT License text are retained,
+unchanged, in the LICENSE file, as the license requires. Every original
+opencode source file keeps its upstream content and its git history.
+
+Modifications made in this fork are Copyright (c) 2026 the Ainvil contributors
+and are likewise released under the MIT License.
+
+This fork is maintained openly and independently. It is not endorsed by,
+sponsored by, or affiliated with the opencode project or anomalyco. The name
+"opencode" and the opencode branding belong to their owners and are not claimed
+by this fork; this project uses the name "Ainvil" for its own identity.

@@ -1,3 +1,8 @@
+<!-- Ainvil fork -->
+> **Ainvil** is an independently-maintained fork of [opencode](https://github.com/anomalyco/opencode), pinned at **`v2.2.6`**. See **[AINVIL.md](AINVIL.md)** for what this fork is and the staged rename plan, and **[NOTICE](NOTICE)** for attribution. The upstream MIT license is retained unchanged in [LICENSE](LICENSE). The original opencode README follows.
+
+---
+
 <p align="center">
   <a href="https://opencode.ai">
     <picture>
