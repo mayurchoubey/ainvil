@@ -18,9 +18,9 @@ await mkdir(archiveDir, { recursive: true })
 await packDistribution({
   root,
   name: pkg.name,
-  command: "opencode",
-  legacyCommand: "opencode2",
-  binary: "opencode",
+  command: "ainvil",
+  legacyCommand: "opencode",
+  binary: "ainvil",
   packagePrefix: "@ainvil/cli-",
   archive: (target) => target.startsWith("linux-"),
 })

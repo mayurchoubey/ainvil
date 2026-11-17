@@ -38,12 +38,12 @@ function fixture(
       ? yield* executableOverride(root, path.join(root, "home"))
       : formula
         ? path.join(root, "Cellar", formula, "2.0.20", "bin", "opencode")
-        : path.join(modules, "@opencode", "cli", "bin", "opencode")
+        : path.join(modules, "@ainvil", "cli", "bin", "opencode")
     yield* fs.makeDirectory(path.dirname(executable), { recursive: true })
     yield* fs.writeFileString(executable, "binary")
     if (!formula && !executableOverride)
       yield* fs.writeFileString(
-        path.join(modules, "@opencode", "cli", "package.json"),
+        path.join(modules, "@ainvil", "cli", "package.json"),
         JSON.stringify({ name, bin: { opencode: "bin/opencode" } }),
       )
     const requests: string[] = []

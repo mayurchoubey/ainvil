@@ -129,28 +129,28 @@ test("global --server and --standalone flags parse in any position for server-co
 
   const url = "http://127.0.0.1:43210"
   const serverCases: ReadonlyArray<readonly [ReadonlyArray<string>, string]> = [
-    [["--server", url, "session", "list"], "opencode session list"],
-    [["session", "--server", url, "list"], "opencode session list"],
-    [["session", "list", "--server", url], "opencode session list"],
-    [["session", "--server", url, "delete", "ses_123"], "opencode session delete"],
-    [["--server", url, "plugin", "list"], "opencode plugin list"],
-    [["plugin", "--server", url, "list"], "opencode plugin list"],
-    [["plugin", "list", "--server", url], "opencode plugin list"],
-    [["plugin", "--server", url, "check"], "opencode plugin check"],
-    [["plugin", "--server", url, "update"], "opencode plugin update"],
-    [["--server", url, "mcp", "list"], "opencode mcp list"],
-    [["mcp", "--server", url, "list"], "opencode mcp list"],
-    [["mcp", "list", "--server", url], "opencode mcp list"],
-    [["mcp", "--server", url, "auth", "linear"], "opencode mcp auth"],
-    [["mcp", "--server", url, "logout", "linear"], "opencode mcp logout"],
-    [["auth", "--server", url, "list"], "opencode auth list"],
-    [["debug", "--server", url, "config"], "opencode debug config"],
-    [["debug", "--server", url, "agents"], "opencode debug agents"],
-    [["debug", "--server", url, "heap-dump"], "opencode debug heap-dump"],
-    [["--server", url, "models"], "opencode models"],
-    [["models", "--server", url], "opencode models"],
-    [["--server", url, "run", "hello"], "opencode run"],
-    [["run", "hello", "--server", url], "opencode run"],
+    [["--server", url, "session", "list"], "ainvil session list"],
+    [["session", "--server", url, "list"], "ainvil session list"],
+    [["session", "list", "--server", url], "ainvil session list"],
+    [["session", "--server", url, "delete", "ses_123"], "ainvil session delete"],
+    [["--server", url, "plugin", "list"], "ainvil plugin list"],
+    [["plugin", "--server", url, "list"], "ainvil plugin list"],
+    [["plugin", "list", "--server", url], "ainvil plugin list"],
+    [["plugin", "--server", url, "check"], "ainvil plugin check"],
+    [["plugin", "--server", url, "update"], "ainvil plugin update"],
+    [["--server", url, "mcp", "list"], "ainvil mcp list"],
+    [["mcp", "--server", url, "list"], "ainvil mcp list"],
+    [["mcp", "list", "--server", url], "ainvil mcp list"],
+    [["mcp", "--server", url, "auth", "linear"], "ainvil mcp auth"],
+    [["mcp", "--server", url, "logout", "linear"], "ainvil mcp logout"],
+    [["auth", "--server", url, "list"], "ainvil auth list"],
+    [["debug", "--server", url, "config"], "ainvil debug config"],
+    [["debug", "--server", url, "agents"], "ainvil debug agents"],
+    [["debug", "--server", url, "heap-dump"], "ainvil debug heap-dump"],
+    [["--server", url, "models"], "ainvil models"],
+    [["models", "--server", url], "ainvil models"],
+    [["--server", url, "run", "hello"], "ainvil run"],
+    [["run", "hello", "--server", url], "ainvil run"],
   ]
 
   for (const [args, expectedPath] of serverCases) {
@@ -161,7 +161,7 @@ test("global --server and --standalone flags parse in any position for server-co
 
   captured.length = 0
   await runArgs(["session", "--standalone", "list"])
-  expect(captured).toEqual([{ path: "opencode session list", server: undefined, standalone: true }])
+  expect(captured).toEqual([{ path: "ainvil session list", server: undefined, standalone: true }])
 
   await expect(runArgs(["plugin", "add", "some-plugin", "--server", url])).rejects.toThrow()
   await expect(runArgs(["plugin", "remove", "some-plugin", "--server", url])).rejects.toThrow()

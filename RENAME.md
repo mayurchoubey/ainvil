@@ -1,9 +1,26 @@
 # Ainvil rename plan
 
 The repository and project identity are branded Ainvil. This document is the
-plan for the remaining **code-level** rename of `opencode` identifiers. It is
-not yet applied, because the surface is large and a half-applied rename does
-not build.
+plan for the **code-level** rename of `opencode` identifiers, applied in stages
+so the build stays green.
+
+## Status
+
+- **Stage A (npm scope): done.** Workspace packages are `@ainvil/*`.
+  `@opencode/pty` and its platform binaries keep their upstream name because
+  they are fetched from npm.
+- **Stage B (command and package names): done for the primary CLI.** The root
+  package is `ainvil`; the command, the compiled binary, the packed npm package
+  and the Docker image use `ainvil`, with `opencode` kept as an alias.
+  Not done: the Node (SEA) distribution (`opencode2-node`), the release
+  workflows and scripts under `.github/`, the `install` script, Nix, AUR and
+  WinGet packaging, and the remote installers in `packages/gui-plugins`. These
+  all point at upstream's hosting (opencode.ai, upstream npm and GitHub
+  releases) and need Ainvil's own publishing targets before they can change.
+  The self-updater still queries opencode.ai; it must be repointed or disabled
+  before any Ainvil release ships.
+- **Stage C (runtime namespace) and Stage D (branding copy): not started.**
+  Help text and messages still say "opencode" in places.
 
 ## Surface (measured at v2.2.6, tag `dc2ffcf8`)
 

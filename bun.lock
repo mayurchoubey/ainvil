@@ -109,6 +109,7 @@
       "name": "@ainvil/cli",
       "version": "2.2.6",
       "bin": {
+        "ainvil": "./bin/ainvil.cjs",
         "opencode": "./bin/opencode.cjs",
         "opencode2": "./bin/opencode2.cjs",
       },
