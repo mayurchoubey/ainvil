@@ -1,15 +1,18 @@
 import path from "node:path"
 import { stat } from "node:fs/promises"
 
+// Project config folders; later entries win. The opencode name stays readable for existing projects.
+const projectFolders = [".opencode", ".ainvil"]
+
 export function configDirectories(config: string, cwd: string) {
-  return [...new Set([config, ...ancestors(cwd).map((directory) => path.join(directory, ".opencode"))])]
+  return [...new Set([config, ...ancestors(cwd).flatMap((directory) => projectFolders.map((name) => path.join(directory, name)))])]
 }
 
 export function projectConfigDirectories(project: string, cwd: string) {
   const directories = ancestors(cwd)
   return directories
     .slice(directories.indexOf(path.resolve(project)))
-    .map((directory) => path.join(directory, ".opencode"))
+    .flatMap((directory) => projectFolders.map((name) => path.join(directory, name)))
 }
 
 export async function localProjectDirectory(cwd: string) {

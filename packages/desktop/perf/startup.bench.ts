@@ -172,7 +172,7 @@ function skipOnboarding(ctx: LaunchContext<unknown>) {
 const services = new Map<string, number>()
 
 async function warmService(ctx: LaunchContext<unknown>) {
-  const registration = join(ctx.home!, ".local", "state", "opencode", "service.json")
+  const registration = join(ctx.home!, ".local", "state", "ainvil", "service.json")
 
   if (await answers(registration)) return
 

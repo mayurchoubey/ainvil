@@ -1,5 +1,6 @@
 #!/usr/bin/env bun
 
+import "@ainvil/util/env-alias"
 import { ensurePluginRuntime } from "@ainvil/plugin/runtime"
 import { NodeRuntime, NodeServices } from "@effect/platform-node"
 import { Cause, Effect } from "effect"

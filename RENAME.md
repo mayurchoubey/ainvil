@@ -19,8 +19,23 @@ so the build stays green.
   releases) and need Ainvil's own publishing targets before they can change.
   The self-updater still queries opencode.ai; it must be repointed or disabled
   before any Ainvil release ships.
-- **Stage C (runtime namespace) and Stage D (branding copy): not started.**
-  Help text and messages still say "opencode" in places.
+- **Stage C (runtime namespace): done with fallback to the opencode names.**
+  - Machine folders (data, config, cache, state, tmp) are `ainvil`, separate
+    from any opencode install. Nothing is migrated from an opencode install.
+  - Config files: `ainvil.json` / `ainvil.jsonc` win; `opencode.json` /
+    `opencode.jsonc` are still read. New files are created under the Ainvil
+    name.
+  - Project folders: `.ainvil/` wins; `.opencode/` is still read.
+  - Environment: `AINVIL_X` is mirrored onto `OPENCODE_X` at startup
+    (`packages/util/src/env-alias.ts`), so the new name wins and the old one
+    still works. The code itself still reads `OPENCODE_*`.
+  - Not changed: the system policy folder (`/etc/opencode` and equivalents)
+    and the macOS managed-preferences id `ai.opencode.managed`; the
+    `~/.opencode/bin` path used by the upstream install script; file names
+    inside the data folder (`opencode-local.db`, `opencode.log`); the server
+    basic-auth user name `opencode`; and the user documentation.
+- **Stage D (branding copy): not started.** Help text and messages still say
+  "opencode" in places.
 
 ## Surface (measured at v2.2.6, tag `dc2ffcf8`)
 

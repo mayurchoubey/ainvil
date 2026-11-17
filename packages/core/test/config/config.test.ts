@@ -1539,7 +1539,7 @@ describe("Config", () => {
               {
                 type: "entries",
                 path: tmp.path,
-                names: [".agents", ".claude", ".opencode", "opencode.json", "opencode.jsonc"],
+                names: [".agents", ".ainvil", ".claude", ".opencode", "ainvil.json", "ainvil.jsonc", "opencode.json", "opencode.jsonc"],
               },
             ])
           }).pipe(Effect.provide(testLayer(tmp.path, undefined, undefined, undefined, Watcher.testLayer)))
@@ -1587,6 +1587,32 @@ describe("Config", () => {
                 .filter((entry) => entry.type === "document")
                 .map((document) => document.info.$schema),
             ).toEqual(["base", "last"])
+          }).pipe(Effect.provide(testLayer(tmp.path)))
+        }),
+      ),
+    ),
+  )
+
+  it.live("loads ainvil config files and folders after the opencode ones", () =>
+    Effect.acquireDisposable(Effect.promise(() => tmpdir())).pipe(
+      Effect.flatMap((tmp) =>
+        Effect.gen(function* () {
+          yield* Effect.promise(() => fs.mkdir(path.join(tmp.path, ".ainvil")))
+          yield* Effect.promise(() =>
+            Promise.all([
+              fs.writeFile(path.join(tmp.path, "opencode.jsonc"), JSON.stringify({ $schema: "opencode-file" })),
+              fs.writeFile(path.join(tmp.path, "ainvil.json"), JSON.stringify({ $schema: "ainvil-file" })),
+              fs.writeFile(path.join(tmp.path, ".ainvil", "ainvil.json"), JSON.stringify({ $schema: "ainvil-folder" })),
+            ]),
+          )
+          return yield* Effect.gen(function* () {
+            const config = yield* Config.Service
+            const schemas = (yield* config.entries())
+              .filter((entry) => entry.type === "document")
+              .map((document) => document.info.$schema)
+
+            // Later documents override earlier ones, so the Ainvil names win over the opencode fallback.
+            expect(schemas).toEqual(["opencode-file", "ainvil-file", "ainvil-folder"])
           }).pipe(Effect.provide(testLayer(tmp.path)))
         }),
       ),
@@ -2125,7 +2151,7 @@ describe("Config", () => {
             expect(yield* watcher.subscriptions()).toContainEqual({
               path: tmp.path,
               type: "entries",
-              names: [".agents", ".claude", ".opencode", "opencode.json", "opencode.jsonc"],
+              names: [".agents", ".ainvil", ".claude", ".opencode", "ainvil.json", "ainvil.jsonc", "opencode.json", "opencode.jsonc"],
             })
           }).pipe(Effect.provide(testLayer(tmp.path)))
         }),

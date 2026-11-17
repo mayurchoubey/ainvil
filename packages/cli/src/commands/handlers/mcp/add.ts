@@ -38,7 +38,12 @@ export default Runtime.handler(
 )
 
 export async function resolveConfigPath(directory: string) {
+  // An existing file wins in this order; a new file is created under the Ainvil name.
   const candidates = [
+    path.join(directory, "ainvil.json"),
+    path.join(directory, "ainvil.jsonc"),
+    path.join(directory, ".ainvil", "ainvil.json"),
+    path.join(directory, ".ainvil", "ainvil.jsonc"),
     path.join(directory, "opencode.json"),
     path.join(directory, "opencode.jsonc"),
     path.join(directory, ".opencode", "opencode.json"),

@@ -1,3 +1,4 @@
+import "./env-alias.js"
 import path from "path"
 import fs from "fs"
 import os from "os"
@@ -9,7 +10,8 @@ import { roots } from "#global-roots"
 import { Flock } from "./flock.js"
 import { makeGlobalNode } from "./effect/app-node.js"
 
-const app = "opencode"
+// Ainvil keeps its own data, config, cache and state folders so it never shares them with an opencode install.
+const app = "ainvil"
 const { data, cache, config, state, tmp } = roots(app)
 
 const paths = {
