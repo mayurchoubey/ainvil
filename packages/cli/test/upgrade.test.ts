@@ -97,7 +97,6 @@ async function cli(args: string[], env: Record<string, string> = {}, entry = "fi
           XDG_CONFIG_HOME: path.join(root, "config"),
           XDG_CACHE_HOME: path.join(root, "cache"),
           XDG_STATE_HOME: path.join(root, "state"),
-          OPENCODE_DISABLE_AUTOUPDATE: "1",
           ...env,
         },
         stdout: "pipe",

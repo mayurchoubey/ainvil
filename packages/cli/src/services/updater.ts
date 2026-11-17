@@ -161,16 +161,6 @@ const make = Effect.gen(function* () {
   // WinGet extracts portable packages into a directory named after the package identifier.
   const installedWinget = /[\\/]winget[\\/]packages[\\/]anomaly\.opencode_/i.test(executable)
 
-  const readPolicy = Effect.fnUntraced(function* () {
-    const values = yield* Effect.forEach(["config.json", "opencode.json", "opencode.jsonc"], (name) =>
-      fs.readFileString(path.join(global.config, name)).pipe(
-        Effect.map(decodePolicy),
-        Effect.orElseSucceed(() => undefined),
-      ),
-    )
-    return values.findLast((value) => value !== undefined) ?? "notify"
-  })
-
   const exec = Effect.fnUntraced(function* (command: string[], timeout: Duration.Input = "30 seconds") {
     return yield* appProcess
       .run(ChildProcess.make(command[0], command.slice(1)), {
@@ -531,36 +521,6 @@ const make = Effect.gen(function* () {
     )
   })
 
-  const inspect = Effect.fnUntraced(function* () {
-    if (OPENCODE_LOCAL || ["1", "true"].includes(process.env.OPENCODE_DISABLE_AUTOUPDATE?.toLowerCase() ?? "")) {
-      yield* Effect.logInfo("update check skipped", {
-        reason: OPENCODE_LOCAL ? "local-install" : "disabled",
-        version: OPENCODE_VERSION,
-        channel: OPENCODE_CHANNEL,
-      })
-      return undefined
-    }
-    const policy = yield* readPolicy()
-    if (policy === "disable") {
-      yield* Effect.logInfo("update check skipped", { reason: "policy-disabled" })
-      return undefined
-    }
-
-    const current = yield* Ref.get(installedVersion)
-    const version = yield* latest()
-    yield* Effect.logInfo("update check", {
-      current,
-      latest: version,
-    })
-    const next = action(current, version, policy)
-    if (next === "none") {
-      yield* Effect.logInfo("update check done", { action: "up-to-date" })
-      return undefined
-    }
-    yield* Effect.logInfo("OpenCode update available", { current, latest: version, action: next })
-    return { policy, version }
-  })
-
   const install = Effect.fnUntraced(function* (version: string) {
     const detected = yield* method()
     if (!detected) {
@@ -608,17 +568,12 @@ const make = Effect.gen(function* () {
     return { type: "available" as const, version }
   })
 
-  const run = Effect.fn("cli.updater.run")(
-    function* (onInstall: (version: string) => void = () => {}) {
-      const result = yield* inspect()
-      if (!result) return undefined
-      if (result.policy === "notify") return { type: "available" as const, version: result.version }
-      onInstall(result.version)
-      if (!(yield* install(result.version))) return yield* Effect.fail(new Error("Installation method not found"))
-      return { type: "installed" as const, version: result.version }
-    },
-    Effect.catch((error) => Effect.logWarning("update check failed", { error }).pipe(Effect.as(undefined))),
-  )
+  // Ainvil never updates itself in the background: the only update source this code knows is upstream
+  // opencode, which would replace the fork. New versions are installed deliberately instead.
+  const run = Effect.fn("cli.updater.run")(function* () {
+    yield* Effect.logInfo("update check skipped", { reason: "disabled", version: OPENCODE_VERSION })
+    return undefined
+  })
 
   return Service.of({ run, check, apply, method, latest, upgrade, removal })
 })
