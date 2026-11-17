@@ -47,12 +47,12 @@ const PermissionParams = {
 }
 
 const Root = Spec.make(typeof OPENCODE_CLI_NAME === "string" ? OPENCODE_CLI_NAME : "ainvil", {
-  description: "OpenCode command line interface",
+  description: "Ainvil command line interface",
   params: {
     ...ServerParams,
     ...PermissionParams,
     directory: Argument.String("directory").pipe(
-      Argument.withDescription("Directory to start OpenCode in"),
+      Argument.withDescription("Directory to start Ainvil in"),
       Argument.optional,
     ),
     continue: Flag.Boolean("continue").pipe(
@@ -69,7 +69,7 @@ const Root = Spec.make(typeof OPENCODE_CLI_NAME === "string" ? OPENCODE_CLI_NAME
   },
   commands: [
     Spec.make("upgrade", {
-      description: "Upgrade OpenCode to the latest or a specific version",
+      description: "Upgrade Ainvil to the latest or a specific version",
       aliases: ["update"],
       params: {
         target: Argument.String("target").pipe(
@@ -398,7 +398,7 @@ const Root = Spec.make(typeof OPENCODE_CLI_NAME === "string" ? OPENCODE_CLI_NAME
       },
     }),
     Spec.make("run", {
-      description: "Run OpenCode with a message",
+      description: "Run Ainvil with a message",
       globalFlags: ServerFlags,
       params: {
         message: Argument.String("message").pipe(

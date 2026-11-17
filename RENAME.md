@@ -34,8 +34,17 @@ so the build stays green.
     `~/.opencode/bin` path used by the upstream install script; file names
     inside the data folder (`opencode-local.db`, `opencode.log`); the server
     basic-auth user name `opencode`; and the user documentation.
-- **Stage D (branding copy): not started.** Help text and messages still say
-  "opencode" in places.
+- **Stage D (wording): done for the engine and README.** CLI, terminal UI,
+  server and core messages, help text, command hints and the system prompts
+  say Ainvil; the README is rewritten and the translated upstream READMEs are
+  removed; the crash screen opens issues on the Ainvil repository.
+  Not changed: the documentation and marketing sites (`packages/web`,
+  `services`), the desktop and web app text and its translations, SDK type
+  names such as `OpenCodeClient`, updater and installer messages, upstream
+  service names (OpenCode Zen, Go, Console), links to opencode.ai docs, the
+  upstream wordmark on the sign-in result page, logo files, and identifiers
+  sent to model providers (for example the ChatGPT agent name and the web
+  fetch user agent).
 
 ## Surface (measured at v2.2.6, tag `dc2ffcf8`)
 

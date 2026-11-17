@@ -227,7 +227,7 @@ const layer = Layer.effect(
       name: "Local",
       capabilities: ["static"],
       prompt:
-        "Artifacts are served as HTML by this OpenCode server. Only people who can reach this server can open them.",
+        "Artifacts are served as HTML by this Ainvil server. Only people who can reach this server can open them.",
       create: (input) =>
         replaceDirectoryFiles(itemDir(input.id), input.files).pipe(Effect.as({ url: viewURL(input.id) })),
       read: (id) => readDirectoryFiles(itemDir(id)),

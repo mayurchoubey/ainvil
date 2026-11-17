@@ -119,14 +119,14 @@ export function make(input: {
     initialize: Effect.fnUntraced(function* (params) {
       yield* Ref.set(input.capabilities, ACPCapabilities.parse(params.clientCapabilities))
       const authMethod: AuthMethod = {
-        description: "Run `opencode auth login` in the terminal",
-        name: "Login with opencode",
+        description: "Run `ainvil auth login` in the terminal",
+        name: "Login with Ainvil",
         id: AuthMethodID,
         ...(params.clientCapabilities?.auth?.terminal ? { type: "terminal" as const, args: ["--login"] } : {}),
       }
       if (params.clientCapabilities?._meta?.["terminal-auth"] === true) {
         authMethod._meta = {
-          "terminal-auth": { command: "opencode", args: ["auth", "login"], label: "OpenCode Login" },
+          "terminal-auth": { command: "ainvil", args: ["auth", "login"], label: "Ainvil Login" },
         }
       }
       return {
@@ -139,7 +139,7 @@ export function make(input: {
           _meta: { [ACPCapabilities.ChildSessionUpdates]: true },
         },
         authMethods: [authMethod],
-        agentInfo: { name: "OpenCode", version: OPENCODE_VERSION },
+        agentInfo: { name: "Ainvil", version: OPENCODE_VERSION },
       }
     }),
     authenticate: Effect.fnUntraced(function* (params) {

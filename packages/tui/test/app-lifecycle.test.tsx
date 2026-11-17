@@ -256,7 +256,7 @@ test("SIGHUP clears title and disposes scoped resources once", async () => {
   })
   const setTitle = setup.renderer.setTerminalTitle.bind(setup.renderer)
   setup.renderer.setTerminalTitle = (title) => {
-    if (title === "OpenCode") started()
+    if (title === "Ainvil") started()
     setTitle(title)
   }
   const listeners = new Set(process.listeners("SIGHUP"))

@@ -13,7 +13,7 @@ const items = [
   },
   {
     title: "Safer Remote Pairing",
-    body: "The first `opencode pair --remote` now warns that it will expose your server and asks for confirmation. For non-interactive use, pass `opencode pair --remote --yes`.",
+    body: "The first `ainvil pair --remote` now warns that it will expose your server and asks for confirmation. For non-interactive use, pass `ainvil pair --remote --yes`.",
   },
   {
     title: "Installable Web App",

@@ -38,15 +38,12 @@ will pull upstream changes deliberately, as reviewed merges, not by tracking
 
 ## The rename to Ainvil
 
-The repository, README, and project identity are branded Ainvil. The deep
-rename of code-level identifiers is **staged, not yet done**, because it is
-large and must keep the build green. See [`RENAME.md`](RENAME.md) for the
-surface measurements and the ordered plan.
-
-Until the code-level rename lands, internal package names (`@opencode/*`),
-the `opencode` binary, the `OPENCODE_*` environment variables, and the
-on-disk config namespace remain as upstream. That is deliberate: a
-half-applied rename would not build.
+The rename is staged so the build stays green; [`RENAME.md`](RENAME.md) records
+what each stage changed and what is left. In short: packages are `@ainvil/*`,
+the command is `ainvil`, and Ainvil has its own machine folders, config file
+names and environment variable prefix, with the opencode names still accepted
+as a fallback. Engine messages and prompts say Ainvil. The documentation sites,
+app text, release pipeline and self-updater still belong to upstream.
 
 ## Maintenance you now own
 

@@ -355,7 +355,7 @@ describe("Claude tool steps", () => {
       ])
       const test = yield* TestSessions.start(claude)
       const error = yield* TestTools.step(test.model, TestTools.prompt()).pipe(Effect.flip)
-      expect(String(error.cause)).toContain("OpenCode tool server did not connect")
+      expect(String(error.cause)).toContain("Ainvil tool server did not connect")
       expect(claude.runs).toHaveLength(1)
       yield* test.registry.close()
       claude.check()
