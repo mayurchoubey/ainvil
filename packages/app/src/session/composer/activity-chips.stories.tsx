@@ -1,13 +1,13 @@
-import type { SessionMessageAssistantTool, SessionMessageInfo } from "@opencode/client/promise"
-import type { SessionDocument } from "@opencode/session-ui/document"
+import type { SessionMessageAssistantTool, SessionMessageInfo } from "@ainvil/client/promise"
+import type { SessionDocument } from "@ainvil/session-ui/document"
 import {
   CURRENT_SESSION_ID,
   STORY_MODEL,
   STORY_TIME,
   editThenTestDocument,
   largeCompletedDocument,
-} from "@opencode/session-ui/storybook"
-import { timelinePresets } from "@opencode/session-ui/timeline/detail"
+} from "@ainvil/session-ui/storybook"
+import { timelinePresets } from "@ainvil/session-ui/timeline/detail"
 import { createEffect, createMemo, on, onCleanup, onMount } from "solid-js"
 import { createStore } from "solid-js/store"
 import { SessionPreview } from "@/session/story-model"

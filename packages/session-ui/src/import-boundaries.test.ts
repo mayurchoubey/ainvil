@@ -14,9 +14,9 @@ describe("Session UI package boundaries", () => {
     const pkg = await Bun.file(new URL("../package.json", import.meta.url)).json()
     const dependencies = pkg.dependencies as Record<string, string>
 
-    expect(dependencies["@opencode/core"]).toBeUndefined()
-    expect(dependencies["@opencode/sdk"]).toBeUndefined()
-    expect(dependencies["@opencode/server"]).toBeUndefined()
+    expect(dependencies["@ainvil/core"]).toBeUndefined()
+    expect(dependencies["@ainvil/sdk"]).toBeUndefined()
+    expect(dependencies["@ainvil/server"]).toBeUndefined()
   })
 
   test("does not contain old Session message boundaries", async () => {

@@ -211,7 +211,7 @@ export function install() {
     },
     sdk() {
       say(["› ", dim], [manifest.sdk.install, strong])
-      say(['import { OpenCode } from "@opencode/sdk"'])
+      say(['import { OpenCode } from "@ainvil/sdk"'])
       say([`Docs: ${manifest.sdk.docs}`, dim])
       return manifest.sdk.install
     },

@@ -1,7 +1,7 @@
 import { expect, test } from "bun:test"
 import { createComputed, createRoot } from "solid-js"
-import { OpenCode } from "@opencode/client/promise"
-import { createData } from "@opencode/client/solid"
+import { OpenCode } from "@ainvil/client/promise"
+import { createData } from "@ainvil/client/solid"
 
 test("publishes an initial message page, its index, and its cursor together", async () => {
   const observed: { ids: string[]; more: boolean; text: string | undefined }[] = []

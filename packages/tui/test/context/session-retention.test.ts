@@ -1,6 +1,6 @@
 import { expect, test } from "bun:test"
-import type { OpenCodeEvent } from "@opencode/client"
-import { createData, createSessionRetention } from "@opencode/client/solid"
+import type { OpenCodeEvent } from "@ainvil/client"
+import { createData, createSessionRetention } from "@ainvil/client/solid"
 import { createGlobalEmitter } from "@solid-primitives/event-bus"
 import { createRoot, createSignal } from "solid-js"
 import { createApi, createFetch, directory, json } from "../fixture/tui-client"

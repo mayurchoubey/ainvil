@@ -11,8 +11,8 @@ import type {
   FormFields,
   FormValue,
   LocationRef,
-} from "@opencode/client"
-import { openUrl } from "@opencode/util/open"
+} from "@ainvil/client"
+import { openUrl } from "@ainvil/util/open"
 import { createEffect, createMemo, createSignal, For, onCleanup, onMount, Show } from "solid-js"
 import { createStore } from "solid-js/store"
 import { useNewDesigns } from "../config"

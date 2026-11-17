@@ -1,4 +1,4 @@
-import { define } from "@opencode/plugin/effect/plugin"
+import { define } from "@ainvil/plugin/effect/plugin"
 import { Effect, Option, Stream } from "effect"
 import { ClaudeIO } from "./claude/io.js"
 import { ClaudeSessions } from "./claude/sessions.js"

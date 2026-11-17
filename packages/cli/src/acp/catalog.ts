@@ -1,8 +1,8 @@
-import type { OpenCodeClient, OpenCodeEvent } from "@opencode/client/effect"
-import type { Agent } from "@opencode/schema/agent"
-import type { Command } from "@opencode/schema/command"
-import type { Model } from "@opencode/schema/model"
-import { FSUtil } from "@opencode/util/fs-util"
+import type { OpenCodeClient, OpenCodeEvent } from "@ainvil/client/effect"
+import type { Agent } from "@ainvil/schema/agent"
+import type { Command } from "@ainvil/schema/command"
+import type { Model } from "@ainvil/schema/model"
+import { FSUtil } from "@ainvil/util/fs-util"
 import { Cause, Deferred, Effect, Exit, Schedule, Semaphore, Stream, SubscriptionRef } from "effect"
 import { ACPError } from "./error"
 

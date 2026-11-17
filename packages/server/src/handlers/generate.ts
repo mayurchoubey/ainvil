@@ -1,17 +1,17 @@
-import { Generate } from "@opencode/core/generate"
-import { Location } from "@opencode/core/location"
-import { LocationServiceMap } from "@opencode/core/location-services"
-import { AbsolutePath } from "@opencode/core/schema"
+import { Generate } from "@ainvil/core/generate"
+import { Location } from "@ainvil/core/location"
+import { LocationServiceMap } from "@ainvil/core/location-services"
+import { AbsolutePath } from "@ainvil/core/schema"
 import {
   InvalidRequestError,
   ModelNotFoundError,
   ProviderRequestError,
   ServiceUnavailableError,
   UnsupportedModelError,
-} from "@opencode/protocol/errors"
-import type { DecisionRequest, ImageRequest } from "@opencode/schema/generate"
-import { Global } from "@opencode/util/global"
-import { Model } from "@opencode/schema/model"
+} from "@ainvil/protocol/errors"
+import type { DecisionRequest, ImageRequest } from "@ainvil/schema/generate"
+import { Global } from "@ainvil/util/global"
+import { Model } from "@ainvil/schema/model"
 import { Effect } from "effect"
 import { HttpApiBuilder } from "effect/http-api"
 import { Api } from "../api"

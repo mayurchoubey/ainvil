@@ -1,32 +1,32 @@
 import { expect, test } from "bun:test"
 import { Schema } from "effect"
-import { Agent } from "@opencode/core/agent"
-import { Session } from "@opencode/core/session"
-import { SessionStore } from "@opencode/core/session/store"
-import { Location } from "@opencode/schema/location"
-import { Model } from "@opencode/schema/model"
-import { Provider } from "@opencode/schema/provider"
-import { Project } from "@opencode/schema/project"
-import { Worktree } from "@opencode/schema/worktree"
-import { Prompt } from "@opencode/schema/prompt"
-import { SessionInbox } from "@opencode/schema/session-inbox"
-import { SessionMessage } from "@opencode/schema/session-message"
-import { Workspace } from "@opencode/schema/workspace"
-import { Command } from "@opencode/schema/command"
-import { Connection } from "@opencode/schema/connection"
-import { Credential } from "@opencode/schema/credential"
-import { FileSystem } from "@opencode/schema/filesystem"
-import { Integration } from "@opencode/schema/integration"
-import { LLM } from "@opencode/schema/llm"
-import { Permission } from "@opencode/schema/permission"
-import { Pty } from "@opencode/schema/pty"
-import { Reference } from "@opencode/schema/reference"
-import { Skill } from "@opencode/schema/skill"
-import { AbsolutePath, optional, statics } from "@opencode/schema/schema"
+import { Agent } from "@ainvil/core/agent"
+import { Session } from "@ainvil/core/session"
+import { SessionStore } from "@ainvil/core/session/store"
+import { Location } from "@ainvil/schema/location"
+import { Model } from "@ainvil/schema/model"
+import { Provider } from "@ainvil/schema/provider"
+import { Project } from "@ainvil/schema/project"
+import { Worktree } from "@ainvil/schema/worktree"
+import { Prompt } from "@ainvil/schema/prompt"
+import { SessionInbox } from "@ainvil/schema/session-inbox"
+import { SessionMessage } from "@ainvil/schema/session-message"
+import { Workspace } from "@ainvil/schema/workspace"
+import { Command } from "@ainvil/schema/command"
+import { Connection } from "@ainvil/schema/connection"
+import { Credential } from "@ainvil/schema/credential"
+import { FileSystem } from "@ainvil/schema/filesystem"
+import { Integration } from "@ainvil/schema/integration"
+import { LLM } from "@ainvil/schema/llm"
+import { Permission } from "@ainvil/schema/permission"
+import { Pty } from "@ainvil/schema/pty"
+import { Reference } from "@ainvil/schema/reference"
+import { Skill } from "@ainvil/schema/skill"
+import { AbsolutePath, optional, statics } from "@ainvil/schema/schema"
 
 test("Core reuses the canonical shared schemas", async () => {
-  const schemaAgent = await import("@opencode/schema/agent")
-  const schemaSession = await import("@opencode/schema/session")
+  const schemaAgent = await import("@ainvil/schema/agent")
+  const schemaSession = await import("@ainvil/schema/session")
   const [
     coreCommand,
     coreConnection,
@@ -48,25 +48,25 @@ test("Core reuses the canonical shared schemas", async () => {
     coreSchema,
     coreWorkspace,
   ] = await Promise.all([
-    import("@opencode/core/command"),
-    import("@opencode/core/integration/connection"),
-    import("@opencode/core/credential"),
-    import("@opencode/core/filesystem"),
-    import("@opencode/core/integration"),
-    import("@opencode/core/location"),
-    import("@opencode/ai/effect"),
-    import("@opencode/core/model"),
-    import("@opencode/core/permission"),
-    import("@opencode/core/worktree"),
-    import("@opencode/core/pty"),
-    import("@opencode/core/project/schema"),
-    import("@opencode/core/provider"),
-    import("@opencode/core/reference"),
-    import("@opencode/core/session/inbox"),
-    import("@opencode/core/session/message"),
-    import("@opencode/core/skill"),
-    import("@opencode/core/schema"),
-    import("@opencode/core/workspace"),
+    import("@ainvil/core/command"),
+    import("@ainvil/core/integration/connection"),
+    import("@ainvil/core/credential"),
+    import("@ainvil/core/filesystem"),
+    import("@ainvil/core/integration"),
+    import("@ainvil/core/location"),
+    import("@ainvil/ai/effect"),
+    import("@ainvil/core/model"),
+    import("@ainvil/core/permission"),
+    import("@ainvil/core/worktree"),
+    import("@ainvil/core/pty"),
+    import("@ainvil/core/project/schema"),
+    import("@ainvil/core/provider"),
+    import("@ainvil/core/reference"),
+    import("@ainvil/core/session/inbox"),
+    import("@ainvil/core/session/message"),
+    import("@ainvil/core/skill"),
+    import("@ainvil/core/schema"),
+    import("@ainvil/core/workspace"),
   ])
 
   const schemas = [

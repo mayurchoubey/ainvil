@@ -9,7 +9,7 @@ import {
   type Mode,
   type ResolvedTheme,
   type ThemeDefinition,
-} from "@opencode/theme/tui"
+} from "@ainvil/theme/tui"
 import { getOpenCodeTheme, parseTheme, type ThemeDocumentSource } from "../../../src/theme"
 
 const opencodeLight = selectTheme(getOpenCodeTheme(), "light")

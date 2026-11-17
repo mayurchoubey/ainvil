@@ -1,12 +1,12 @@
 export * as Generate from "./generate.js"
 
-import { ai, AIError, DecisionClient, ImageClient, LLMClient, Media } from "@opencode/ai/effect"
-import type { DecisionRequest, DecisionResult, ImageRequest, ImageResult } from "@opencode/schema/generate"
-import { Money } from "@opencode/schema/money"
-import { SessionID } from "@opencode/schema/session-id"
+import { ai, AIError, DecisionClient, ImageClient, LLMClient, Media } from "@ainvil/ai/effect"
+import type { DecisionRequest, DecisionResult, ImageRequest, ImageResult } from "@ainvil/schema/generate"
+import { Money } from "@ainvil/schema/money"
+import { SessionID } from "@ainvil/schema/session-id"
 import { Context, Effect, Layer, Schema } from "effect"
-import { RequestExecutor } from "@opencode/ai/route"
-import { makeLocationNode } from "@opencode/util/effect/app-node"
+import { RequestExecutor } from "@ainvil/ai/route"
+import { makeLocationNode } from "@ainvil/util/effect/app-node"
 import { llmClient, requestExecutor } from "./effect/app-node-platform.js"
 import { Integration } from "./integration.js"
 import { ModelResolver } from "./model-resolver.js"
@@ -76,7 +76,7 @@ export interface Interface {
   readonly decisions: (input: DecisionRequest) => Effect.Effect<DecisionResult, Error>
 }
 
-export class Service extends Context.Service<Service, Interface>()("@opencode/Generate") {}
+export class Service extends Context.Service<Service, Interface>()("@ainvil/Generate") {}
 
 // Image and decision clients are built here, on the shared request executor, so only Generate depends on them.
 export const layer = Layer.effect(

@@ -8,14 +8,14 @@ import {
   type MediaPart,
   type ProviderMetadata,
   type TextPart,
-} from "@opencode/ai/effect"
-import type { Model } from "@opencode/schema/model"
+} from "@ainvil/ai/effect"
+import type { Model } from "@ainvil/schema/model"
 import { Option, Schema } from "effect"
 import { fileURLToPath } from "url"
 import { SessionMessage } from "../message.js"
 import { SessionHistory } from "../history.js"
 import { SessionRecentText } from "../recent-text.js"
-import type { FileAttachment } from "@opencode/schema/prompt"
+import type { FileAttachment } from "@ainvil/schema/prompt"
 
 const imageMimes = new Set(["image/png", "image/jpeg", "image/gif", "image/webp"])
 
@@ -293,7 +293,7 @@ function toLLMMessage(message: SessionMessage.Info, model: Model.Ref, providerMe
   }
 }
 
-/** Translate projected Session history into canonical @opencode/ai context. */
+/** Translate projected Session history into canonical @ainvil/ai context. */
 export const toLLMMessages = (
   messages: readonly SessionMessage.Info[],
   model: Model.Ref,

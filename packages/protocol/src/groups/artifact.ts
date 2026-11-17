@@ -1,6 +1,6 @@
-import { Artifact } from "@opencode/schema/artifact"
-import { Location } from "@opencode/schema/location"
-import { Session } from "@opencode/schema/session"
+import { Artifact } from "@ainvil/schema/artifact"
+import { Location } from "@ainvil/schema/location"
+import { Session } from "@ainvil/schema/session"
 import { Schema } from "effect"
 import { HttpApiEndpoint, HttpApiSchema, OpenApi } from "effect/http-api"
 import {

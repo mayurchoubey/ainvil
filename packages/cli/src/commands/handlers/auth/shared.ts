@@ -1,6 +1,6 @@
 import { Effect } from "effect"
-import { OpenCode, type IntegrationInfo, type IntegrationMethod, type OpenCodeClient } from "@opencode/client"
-import { Service } from "@opencode/client/effect/service"
+import { OpenCode, type IntegrationInfo, type IntegrationMethod, type OpenCodeClient } from "@ainvil/client"
+import { Service } from "@ainvil/client/effect/service"
 import { ServerConnection } from "../../../services/server-connection"
 
 export const location = { directory: process.cwd() }

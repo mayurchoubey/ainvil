@@ -1,5 +1,5 @@
-import { Button } from "@opencode/ui/button"
-import { useDialog } from "@opencode/ui/context/dialog"
+import { Button } from "@ainvil/ui/button"
+import { useDialog } from "@ainvil/ui/context/dialog"
 import { onMount } from "solid-js"
 import { createStore } from "solid-js/store"
 import { DialogStoryRuntime } from "@/components-lab/dialog-story-runtime"
@@ -25,7 +25,7 @@ function makeModel(input: {
     api: {
       id: input.id,
       url: `https://api.${input.providerID}.example/v1`,
-      npm: `@opencode/ai/providers/${input.providerID}`,
+      npm: `@ainvil/ai/providers/${input.providerID}`,
     },
     name: input.name,
     family: input.family,

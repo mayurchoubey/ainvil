@@ -21,7 +21,7 @@ it.live("integration policy filters /connect and blocks denied integrations and 
             providers: {
               custom: {
                 name: "Configured Custom Provider",
-                package: "@opencode/ai/providers/openai-compatible",
+                package: "@ainvil/ai/providers/openai-compatible",
                 settings: { apiKey: "secret" },
                 models: { chat: {} },
               },

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "@opencode/plugin-browser",
+  "name": "@ainvil/plugin-browser",
   "version": "2.2.6",
   "description": "OpenCode's desktop browser plugin",
   "type": "module",
@@ -29,8 +29,8 @@
     "test": "bun test"
   },
   "dependencies": {
-    "@opencode/plugin": "workspace:*",
-    "@opencode/schema": "workspace:*",
+    "@ainvil/plugin": "workspace:*",
+    "@ainvil/schema": "workspace:*",
     "effect": "catalog:"
   },
   "devDependencies": {

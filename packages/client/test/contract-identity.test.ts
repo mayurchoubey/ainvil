@@ -1,12 +1,12 @@
 import { expect, test } from "bun:test"
 import { Schema } from "effect"
-import { Agent } from "@opencode/schema/agent"
-import { Config } from "@opencode/schema/config"
-import { Model } from "@opencode/schema/model"
-import { Prompt } from "@opencode/schema/prompt"
-import { Session } from "@opencode/schema/session"
-import { SessionMessage } from "@opencode/schema/session-message"
-import { Vcs } from "@opencode/schema/vcs"
+import { Agent } from "@ainvil/schema/agent"
+import { Config } from "@ainvil/schema/config"
+import { Model } from "@ainvil/schema/model"
+import { Prompt } from "@ainvil/schema/prompt"
+import { Session } from "@ainvil/schema/session"
+import { SessionMessage } from "@ainvil/schema/session-message"
+import { Vcs } from "@ainvil/schema/vcs"
 
 const Client = await import("../src/effect")
 

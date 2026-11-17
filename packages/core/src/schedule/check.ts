@@ -1,9 +1,9 @@
 export * as ScheduleCheck from "./check.js"
 
-import { CodeMode } from "@opencode/codemode"
-import { isRecord } from "@opencode/util/record"
-import { collectStream } from "@opencode/util/process"
-import type { Schedule as ScheduleSchema } from "@opencode/schema/schedule"
+import { CodeMode } from "@ainvil/codemode"
+import { isRecord } from "@ainvil/util/record"
+import { collectStream } from "@ainvil/util/process"
+import type { Schedule as ScheduleSchema } from "@ainvil/schema/schedule"
 import { Array, Duration, Effect, Option, Result, Schema } from "effect"
 import { ChildProcess } from "effect/process"
 import { Agent } from "../agent.js"

@@ -1,6 +1,6 @@
 export * as ConfigPolicyPlugin from "./policy.js"
 
-import { define } from "@opencode/plugin/effect/plugin"
+import { define } from "@ainvil/plugin/effect/plugin"
 import { Effect, Stream } from "effect"
 import { Bus } from "../../bus.js"
 import { Config } from "../../config.js"

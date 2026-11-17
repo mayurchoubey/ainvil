@@ -1,7 +1,7 @@
 export * as CodeModeFetch from "./fetch.js"
 
-import { Extension } from "@opencode/codemode"
-import { isRecord } from "@opencode/util/record"
+import { Extension } from "@ainvil/codemode"
+import { isRecord } from "@ainvil/util/record"
 import { Effect } from "effect"
 import { Permission } from "../permission.js"
 import { CodeModeExecution } from "./execution.js"

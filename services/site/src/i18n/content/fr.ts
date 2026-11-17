@@ -184,7 +184,7 @@ export const content = {
       features: {
         "typescript-client": {
           title: "Client TypeScript",
-          body: "Requêtes et événements typés, avec les mêmes valeurs que @opencode/client.",
+          body: "Requêtes et événements typés, avec les mêmes valeurs que @ainvil/client.",
         },
         "sessions-from-code": {
           title: "Sessions par le code",
@@ -196,7 +196,7 @@ export const content = {
         },
         "npm-or-bun": {
           title: "npm ou bun",
-          body: "Installez-le avec npm i @opencode/sdk ou bun add @opencode/sdk.",
+          body: "Installez-le avec npm i @ainvil/sdk ou bun add @ainvil/sdk.",
         },
         "in-process-host": {
           title: "Hôte in-process",

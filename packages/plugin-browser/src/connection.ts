@@ -1,9 +1,9 @@
 export * as BrowserConnection from "./connection.js"
 
-import type { Context } from "@opencode/plugin/effect/plugin"
-import type { RpcRegistration } from "@opencode/plugin/effect/rpc"
-import type { Session } from "@opencode/schema/session"
-import { Tool } from "@opencode/schema/tool"
+import type { Context } from "@ainvil/plugin/effect/plugin"
+import type { RpcRegistration } from "@ainvil/plugin/effect/rpc"
+import type { Session } from "@ainvil/schema/session"
+import { Tool } from "@ainvil/schema/tool"
 import { Cause, Deferred, Duration, Effect, Exit, Option, Schema, Scope, Semaphore, Stream } from "effect"
 import { BrowserMachine } from "./machine.js"
 import { Browser } from "./rpc.js"

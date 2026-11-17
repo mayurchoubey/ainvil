@@ -1,7 +1,7 @@
 export * as CodeModeTool from "./tool.js"
 
-import { ToolFailure } from "@opencode/ai/effect"
-import { CodeMode, Namespace, Tool } from "@opencode/codemode"
+import { ToolFailure } from "@ainvil/ai/effect"
+import { CodeMode, Namespace, Tool } from "@ainvil/codemode"
 import type {
   Content,
   Context as ToolContext,
@@ -10,7 +10,7 @@ import type {
   Metadata,
   Namespace as ToolNamespace,
   Result,
-} from "@opencode/schema/tool"
+} from "@ainvil/schema/tool"
 import { Clock, Context, Effect, Option, Ref, Schema, Semaphore } from "effect"
 import { Config } from "../config.js"
 import { Flag } from "../flag.js"
@@ -66,7 +66,7 @@ class Run extends Context.Service<
     readonly executeTool: (name: string, tool: Info, input: unknown) => Effect.Effect<unknown, unknown>
     readonly hooks: CodeMode.Hooks
   }
->()("@opencode/CodeModeTool/Run") {}
+>()("@ainvil/CodeModeTool/Run") {}
 
 export type Inventory = {
   readonly tools: ReadonlyMap<string, Info>

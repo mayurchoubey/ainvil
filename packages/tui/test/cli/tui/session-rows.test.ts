@@ -1,8 +1,8 @@
 import { expect, test } from "bun:test"
-import type { SessionMessageAssistant, SessionMessageInfo } from "@opencode/client"
+import type { SessionMessageAssistant, SessionMessageInfo } from "@ainvil/client"
 import { createMemo, createRoot } from "solid-js"
 import { createStore } from "solid-js/store"
-import { SessionTurn } from "@opencode/util/session-turn"
+import { SessionTurn } from "@ainvil/util/session-turn"
 import {
   cacheReuseDrop,
   messageBoundaryIDs,

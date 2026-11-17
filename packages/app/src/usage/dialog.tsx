@@ -1,8 +1,8 @@
-import type { LocationRef, UsageLimitsInfo } from "@opencode/client/promise"
-import { Button } from "@opencode/ui/button"
-import { useDialog } from "@opencode/ui/context/dialog"
-import { Dialog, DialogBody, DialogFooter, DialogHeader, DialogTitleGroup } from "@opencode/ui/dialog"
-import { Loader } from "@opencode/ui/loader"
+import type { LocationRef, UsageLimitsInfo } from "@ainvil/client/promise"
+import { Button } from "@ainvil/ui/button"
+import { useDialog } from "@ainvil/ui/context/dialog"
+import { Dialog, DialogBody, DialogFooter, DialogHeader, DialogTitleGroup } from "@ainvil/ui/dialog"
+import { Loader } from "@ainvil/ui/loader"
 import {
   createEffect,
   createMemo,

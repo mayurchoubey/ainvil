@@ -1,5 +1,5 @@
 import { randomUUID } from "node:crypto"
-import type { MainContext } from "@opencode/plugin/gui/main"
+import type { MainContext } from "@ainvil/plugin/gui/main"
 import type { WslOpencodeCheck, WslServerConfig } from "./contract"
 import {
   createWslMachineState,

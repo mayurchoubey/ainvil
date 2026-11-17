@@ -11,13 +11,13 @@ import {
   type Accessor,
 } from "solid-js"
 import { createStore } from "solid-js/store"
-import { Button } from "@opencode/ui/button"
-import { Icon } from "@opencode/ui/icon"
-import { SessionFilePanelV2, SessionFilePanelV2Empty } from "@opencode/session-ui/v2/session-file-panel-v2"
-import { SessionReviewV2Sidebar, SessionReviewV2SidebarToggle } from "@opencode/session-ui/v2/session-review-v2"
-import { getFilename } from "@opencode/util/path"
-import { artifactKind } from "@opencode/util/artifact"
-import type { ChangeKind } from "@opencode/plugin/gui/review"
+import { Button } from "@ainvil/ui/button"
+import { Icon } from "@ainvil/ui/icon"
+import { SessionFilePanelV2, SessionFilePanelV2Empty } from "@ainvil/session-ui/v2/session-file-panel-v2"
+import { SessionReviewV2Sidebar, SessionReviewV2SidebarToggle } from "@ainvil/session-ui/v2/session-review-v2"
+import { getFilename } from "@ainvil/util/path"
+import { artifactKind } from "@ainvil/util/artifact"
+import type { ChangeKind } from "@ainvil/plugin/gui/review"
 import {
   createKeyed,
   usePlugin,
@@ -26,7 +26,7 @@ import {
   type PanelSidebar,
   type PanelTab,
   type SessionScreen,
-} from "@opencode/plugin/gui"
+} from "@ainvil/plugin/gui"
 import { current, useShared } from "./context"
 import SessionFileList, { applyFileListKeyDown } from "./list"
 import OpenInAppButton, { useOpenInApp } from "./open-in-app"

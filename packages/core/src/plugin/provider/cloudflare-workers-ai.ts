@@ -1,6 +1,6 @@
 import { Effect } from "effect"
-import { define } from "@opencode/plugin/effect/plugin"
-import { Form } from "@opencode/schema/form"
+import { define } from "@ainvil/plugin/effect/plugin"
+import { Form } from "@ainvil/schema/form"
 import { Provider } from "../../provider.js"
 import { configuredSettings } from "./configured.js"
 import { credentialSettings, metadataSettings } from "./credential-settings.js"
@@ -49,7 +49,7 @@ export const CloudflareWorkersAIPlugin = define({
         const accountId = resolveAccountId({ ...provider.settings, ...login.settings })
         if (!accountId) return
         provider.settings =
-          provider.package === "@opencode/ai/providers/cloudflare-workers-ai"
+          provider.package === "@ainvil/ai/providers/cloudflare-workers-ai"
             ? { ...provider.settings, accountId }
             : { ...provider.settings, baseURL: workersEndpoint(accountId) }
       })

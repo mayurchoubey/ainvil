@@ -1,20 +1,20 @@
-import { Badge } from "@opencode/ui/badge"
-import { Dialog, DialogBody } from "@opencode/ui/dialog"
-import { useDialog } from "@opencode/ui/context/dialog"
-import { Icon } from "@opencode/ui/icon"
-import { Keybind } from "@opencode/ui/keybind"
-import { MenuScroll } from "@opencode/ui/menu-scroll"
+import { Badge } from "@ainvil/ui/badge"
+import { Dialog, DialogBody } from "@ainvil/ui/dialog"
+import { useDialog } from "@ainvil/ui/context/dialog"
+import { Icon } from "@ainvil/ui/icon"
+import { Keybind } from "@ainvil/ui/keybind"
+import { MenuScroll } from "@ainvil/ui/menu-scroll"
 import {
   displayName,
   getProjectAvatarGenerated,
   getProjectAvatarSource,
   getProjectAvatarVariant,
   ProjectAvatar,
-} from "@opencode/ui/project-avatar"
-import { TextInput } from "@opencode/ui/text-input"
-import { createTypeahead } from "@opencode/ui/typeahead"
+} from "@ainvil/ui/project-avatar"
+import { TextInput } from "@ainvil/ui/text-input"
+import { createTypeahead } from "@ainvil/ui/typeahead"
 import { createEventListener } from "@solid-primitives/event-listener"
-import { getFilename } from "@opencode/util/path"
+import { getFilename } from "@ainvil/util/path"
 import { createEffect, createMemo, createResource, createSignal, For, Match, onCleanup, Show, Switch } from "solid-js"
 import type { PromptProject, PromptProjectController, PromptServer } from "@/new-session/project/selector"
 import type { NewSessionWorkspaceController } from "@/new-session/workspace/controller"

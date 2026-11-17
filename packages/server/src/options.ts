@@ -1,8 +1,8 @@
-import { Database } from "@opencode/core/database/database"
-import { ModelsDev } from "@opencode/core/models-dev"
-import { PersistentPty } from "@opencode/core/persistent-pty"
+import { Database } from "@ainvil/core/database/database"
+import { ModelsDev } from "@ainvil/core/models-dev"
+import { PersistentPty } from "@ainvil/core/persistent-pty"
 import { Schema } from "effect"
-import type { LayerNodePlatform } from "@opencode/util/effect/app-node-platform"
+import type { LayerNodePlatform } from "@ainvil/util/effect/app-node-platform"
 
 export const ServerOptions = Schema.Struct({
   app: Schema.optional(

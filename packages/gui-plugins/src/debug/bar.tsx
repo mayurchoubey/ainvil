@@ -1,13 +1,13 @@
 import { createMemo, createSignal, onCleanup, Show, untrack } from "solid-js"
-import { Icon } from "@opencode/ui/icon"
-import { IconButton } from "@opencode/ui/icon-button"
-import { showToast } from "@opencode/ui/toast"
-import { Tooltip } from "@opencode/ui/tooltip"
-import { usePlugin } from "@opencode/plugin/gui"
-import { motionGlobals, motionTuning } from "@opencode/ui/motion-tuning"
-import { duration } from "@opencode/util/duration"
-import { SessionTurn } from "@opencode/util/session-turn"
-import { builtinContext } from "@opencode/plugin/gui/builtin"
+import { Icon } from "@ainvil/ui/icon"
+import { IconButton } from "@ainvil/ui/icon-button"
+import { showToast } from "@ainvil/ui/toast"
+import { Tooltip } from "@ainvil/ui/tooltip"
+import { usePlugin } from "@ainvil/plugin/gui"
+import { motionGlobals, motionTuning } from "@ainvil/ui/motion-tuning"
+import { duration } from "@ainvil/util/duration"
+import { SessionTurn } from "@ainvil/util/session-turn"
+import { builtinContext } from "@ainvil/plugin/gui/builtin"
 import {
   initialFocusToggleState,
   isFocusToggleActive,

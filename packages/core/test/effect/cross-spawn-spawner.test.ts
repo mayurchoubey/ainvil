@@ -5,9 +5,9 @@ import path from "node:path"
 import { inspect } from "node:util"
 import { Cause, Deferred, Effect, Exit, PlatformError, Redacted, Stream } from "effect"
 import { ChildProcess, ChildProcessSpawner } from "effect/process"
-import { CrossSpawnSpawner } from "@opencode/util/cross-spawn-spawner"
-import { LayerNode } from "@opencode/util/effect/layer-node"
-import { Teardown } from "@opencode/util/teardown"
+import { CrossSpawnSpawner } from "@ainvil/util/cross-spawn-spawner"
+import { LayerNode } from "@ainvil/util/effect/layer-node"
+import { Teardown } from "@ainvil/util/teardown"
 import { testEffect } from "../lib/effect"
 
 const live = LayerNode.compile(CrossSpawnSpawner.node)

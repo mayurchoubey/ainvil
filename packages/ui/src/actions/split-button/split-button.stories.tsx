@@ -1,5 +1,5 @@
-import { Icon } from "@opencode/ui/icon"
-import { AppIcon } from "@opencode/ui/app-icon"
+import { Icon } from "@ainvil/ui/icon"
+import { AppIcon } from "@ainvil/ui/app-icon"
 import { SplitButton, SplitButtonAction, SplitButtonMenuTrigger } from "./split-button"
 
 export default {

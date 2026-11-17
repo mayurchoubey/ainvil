@@ -20,11 +20,11 @@ import {
   type MarkdownCodeAction,
   type MarkdownCodeBlock,
   type MarkdownCodeBlocks,
-} from "@opencode/session-ui/context/markdown"
-import { SourcesProvider } from "@opencode/session-ui/context/sources"
-import { sourcesExperiment } from "@opencode/session-ui/sources/experiment"
-import { useTheme } from "@opencode/ui/theme/context"
-import type { DesktopTheme } from "@opencode/ui/theme/types"
+} from "@ainvil/session-ui/context/markdown"
+import { SourcesProvider } from "@ainvil/session-ui/context/sources"
+import { sourcesExperiment } from "@ainvil/session-ui/sources/experiment"
+import { useTheme } from "@ainvil/ui/theme/context"
+import type { DesktopTheme } from "@ainvil/ui/theme/types"
 import {
   CodeBlock,
   CodeBlockAction,
@@ -32,9 +32,9 @@ import {
   Theme,
   type CodeBlockProps,
   type MountedSession,
-} from "@opencode/plugin/gui"
-import { BuiltinSlot, type BuiltinSlotMap } from "@opencode/plugin/gui/builtin"
-import { PluginContext } from "@opencode/plugin/gui/host"
+} from "@ainvil/plugin/gui"
+import { BuiltinSlot, type BuiltinSlotMap } from "@ainvil/plugin/gui/builtin"
+import { PluginContext } from "@ainvil/plugin/gui/host"
 import { usePluginHost, type Item } from "./host"
 import { createLinkCheck } from "./link-check"
 

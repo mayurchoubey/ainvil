@@ -1,7 +1,7 @@
 export * as McpResourceTools from "./mcp-resource.js"
 
-import { ToolFailure } from "@opencode/ai/effect"
-import type { Context } from "@opencode/plugin/effect/plugin"
+import { ToolFailure } from "@ainvil/ai/effect"
+import type { Context } from "@ainvil/plugin/effect/plugin"
 import { Effect, Schema } from "effect"
 import { Mcp } from "../../mcp/index.js"
 import { Permission } from "../../permission.js"

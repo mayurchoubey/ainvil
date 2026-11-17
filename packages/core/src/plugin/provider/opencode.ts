@@ -1,7 +1,7 @@
 import { Duration, Effect, Equal, FiberHandle, Option, Schema, Scope, Semaphore, Stream } from "effect"
-import type { IntegrationOAuthMethodRegistration } from "@opencode/plugin/effect/integration"
-import { define } from "@opencode/plugin/effect/plugin"
-import type { SessionHttpResponse } from "@opencode/plugin/effect/session"
+import type { IntegrationOAuthMethodRegistration } from "@ainvil/plugin/effect/integration"
+import { define } from "@ainvil/plugin/effect/plugin"
+import type { SessionHttpResponse } from "@ainvil/plugin/effect/session"
 import {
   FetchHttpClient,
   HttpBody,

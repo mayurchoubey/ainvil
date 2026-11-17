@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test"
-import type { UsageLimitsInfo } from "@opencode/client/promise"
+import type { UsageLimitsInfo } from "@ainvil/client/promise"
 import {
   selectUsageDialogView,
   startUsageDialog,

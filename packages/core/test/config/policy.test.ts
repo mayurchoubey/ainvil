@@ -1,21 +1,21 @@
 import { describe, expect } from "bun:test"
-import { Document, Event, Info, type Entry } from "@opencode/schema/config"
-import { ConfigPolicy } from "@opencode/schema/config/policy"
-import { Permission } from "@opencode/schema/permission"
-import { Config } from "@opencode/core/config"
-import { Integration } from "@opencode/core/integration"
-import { ConfigPolicyPlugin } from "@opencode/core/config/plugin/policy"
-import { Bus } from "@opencode/core/bus"
-import { Plugin } from "@opencode/core/plugin"
-import { PluginHooks } from "@opencode/core/plugin/hooks"
-import { PluginHost } from "@opencode/core/plugin/host"
-import { Provider } from "@opencode/core/provider"
-import { Session } from "@opencode/core/session"
-import { Credential } from "@opencode/core/credential"
-import { ConfigIntegration } from "@opencode/core/config/integration"
-import { WebSearch } from "@opencode/core/websearch"
-import { WebSearchExa } from "@opencode/core/plugin/websearch/exa"
-import { WebSearchTinyFish } from "@opencode/core/plugin/websearch/tinyfish"
+import { Document, Event, Info, type Entry } from "@ainvil/schema/config"
+import { ConfigPolicy } from "@ainvil/schema/config/policy"
+import { Permission } from "@ainvil/schema/permission"
+import { Config } from "@ainvil/core/config"
+import { Integration } from "@ainvil/core/integration"
+import { ConfigPolicyPlugin } from "@ainvil/core/config/plugin/policy"
+import { Bus } from "@ainvil/core/bus"
+import { Plugin } from "@ainvil/core/plugin"
+import { PluginHooks } from "@ainvil/core/plugin/hooks"
+import { PluginHost } from "@ainvil/core/plugin/host"
+import { Provider } from "@ainvil/core/provider"
+import { Session } from "@ainvil/core/session"
+import { Credential } from "@ainvil/core/credential"
+import { ConfigIntegration } from "@ainvil/core/config/integration"
+import { WebSearch } from "@ainvil/core/websearch"
+import { WebSearchExa } from "@ainvil/core/plugin/websearch/exa"
+import { WebSearchTinyFish } from "@ainvil/core/plugin/websearch/tinyfish"
 import { Effect, Schema } from "effect"
 import { FetchHttpClient } from "effect/http"
 import { waitUntil } from "../lib/eventually"
@@ -371,13 +371,13 @@ describe("integration policy", () => {
             type: "document",
             integrationID: origin,
             info: decode({
-              providers: { "acme-gateway": { package: "@opencode/ai/providers/openai-compatible", models: {} } },
+              providers: { "acme-gateway": { package: "@ainvil/ai/providers/openai-compatible", models: {} } },
             }),
           }),
           new Document({
             type: "document",
             info: decode({
-              providers: { "my-llm": { package: "@opencode/ai/providers/openai-compatible", models: {} } },
+              providers: { "my-llm": { package: "@ainvil/ai/providers/openai-compatible", models: {} } },
             }),
           }),
         ])

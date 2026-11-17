@@ -1,11 +1,11 @@
-import { Button } from "@opencode/ui/button"
-import { Dialog, DialogBody, DialogFooter, DialogHeader, DialogTitle } from "@opencode/ui/dialog"
-import { Divider } from "@opencode/ui/divider"
-import { TextInput } from "@opencode/ui/text-input"
-import { useDialog } from "@opencode/ui/context/dialog"
-import { uuid } from "@opencode/util/uuid"
+import { Button } from "@ainvil/ui/button"
+import { Dialog, DialogBody, DialogFooter, DialogHeader, DialogTitle } from "@ainvil/ui/dialog"
+import { Divider } from "@ainvil/ui/divider"
+import { TextInput } from "@ainvil/ui/text-input"
+import { useDialog } from "@ainvil/ui/context/dialog"
+import { uuid } from "@ainvil/util/uuid"
 import { createMemo, createSignal, onCleanup, onMount, Show, untrack } from "solid-js"
-import { createKeyed, usePlugin } from "@opencode/plugin/gui"
+import { createKeyed, usePlugin } from "@ainvil/plugin/gui"
 import type { SshConfig } from "./contract"
 import {
   createSshDialogState,

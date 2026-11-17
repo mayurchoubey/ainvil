@@ -1,9 +1,9 @@
 import { EOL } from "node:os"
 import { Effect } from "effect"
-import { OpenCode, type McpServer } from "@opencode/client"
+import { OpenCode, type McpServer } from "@ainvil/client"
 import { Commands } from "../../commands"
 import { Runtime } from "../../../framework/runtime"
-import { Service } from "@opencode/client/effect/service"
+import { Service } from "@ainvil/client/effect/service"
 import { ServerConnection } from "../../../services/server-connection"
 
 export default Runtime.handler(

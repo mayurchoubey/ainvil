@@ -6,7 +6,7 @@ import {
   themeModes,
   type ResolvedTheme,
   type SurfaceName,
-} from "@opencode/theme/tui"
+} from "@ainvil/theme/tui"
 import {
   allThemes,
   getOpenCode2Theme,

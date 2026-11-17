@@ -16,8 +16,8 @@ import {
   ToolMessage,
   type ToolResultPart,
   UserMessage,
-} from "@opencode/ai/effect"
-import type { StreamOptions } from "@opencode/ai/route"
+} from "@ainvil/ai/effect"
+import type { StreamOptions } from "@ainvil/ai/route"
 import type {
   SessionCompaction,
   SessionContext,
@@ -25,13 +25,13 @@ import type {
   SessionRequest,
   SessionRequestKind,
   SessionTitle,
-} from "@opencode/plugin/effect/session"
-import type { Agent } from "@opencode/schema/agent"
-import type { Model } from "@opencode/schema/model"
-import type { Content } from "@opencode/schema/tool"
+} from "@ainvil/plugin/effect/session"
+import type { Agent } from "@ainvil/schema/agent"
+import type { Model } from "@ainvil/schema/model"
+import type { Content } from "@ainvil/schema/tool"
 import { Cause, Context, Effect, Layer, Result, Stream } from "effect"
 import { HttpClientRequest, HttpClientResponse } from "effect/http"
-import { makeLocationNode } from "@opencode/util/effect/app-node"
+import { makeLocationNode } from "@ainvil/util/effect/app-node"
 import { App } from "../app.js"
 import { Instructions } from "../instructions/index.js"
 import { Permission } from "../permission.js"
@@ -253,7 +253,7 @@ export interface Interface {
   readonly title: (input: Input) => Effect.Effect<Prepared<SessionTitle>>
 }
 
-export class Service extends Context.Service<Service, Interface>()("@opencode/SessionModelRequest") {}
+export class Service extends Context.Service<Service, Interface>()("@ainvil/SessionModelRequest") {}
 
 export const layer = Layer.effect(
   Service,

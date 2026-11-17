@@ -1,4 +1,4 @@
-import type { OpenCodeClient } from "@opencode/client/promise"
+import type { OpenCodeClient } from "@ainvil/client/promise"
 import type { Schema } from "effect"
 
 /**

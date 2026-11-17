@@ -1,6 +1,6 @@
-import type { FileDiffInfo } from "@opencode/client/promise"
-import type { ChangeKind } from "@opencode/plugin/gui/review"
-import { artifactKind } from "@opencode/util/artifact"
+import type { FileDiffInfo } from "@ainvil/client/promise"
+import type { ChangeKind } from "@ainvil/plugin/gui/review"
+import { artifactKind } from "@ainvil/util/artifact"
 import { Match, Predicate } from "effect"
 
 export type RenderDiff = FileDiffInfo

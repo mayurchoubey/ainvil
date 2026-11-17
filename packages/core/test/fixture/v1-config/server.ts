@@ -1,7 +1,7 @@
 export * as ConfigServerV1 from "./server"
 
 import { Schema } from "effect"
-import { PositiveInt } from "@opencode/core/schema"
+import { PositiveInt } from "@ainvil/core/schema"
 
 export const Server = Schema.Struct({
   port: Schema.optional(PositiveInt).annotate({

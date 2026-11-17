@@ -1,6 +1,6 @@
-import { SdkPlugins } from "@opencode/core/plugin/sdk"
-import { Tool } from "@opencode/core/tool"
-import { Plugin } from "@opencode/plugin/effect"
+import { SdkPlugins } from "@ainvil/core/plugin/sdk"
+import { Tool } from "@ainvil/core/tool"
+import { Plugin } from "@ainvil/plugin/effect"
 import { createHash } from "node:crypto"
 import {
   Cause,
@@ -40,7 +40,7 @@ export interface Interface {
   readonly stream: (request: ProviderRequest) => Stream.Stream<ProviderResponseEvent, ProviderDisconnectedError>
 }
 
-export class Service extends Context.Service<Service, Interface>()("@opencode/simulation/SimulatedProvider") {}
+export class Service extends Context.Service<Service, Interface>()("@ainvil/simulation/SimulatedProvider") {}
 
 interface ProviderInvocation extends ProviderRequest {
   readonly id: string

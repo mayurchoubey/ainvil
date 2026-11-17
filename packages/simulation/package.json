@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "@opencode/simulation",
+  "name": "@ainvil/simulation",
   "version": "2.2.6",
   "type": "module",
   "license": "MIT",
@@ -31,11 +31,11 @@
     "typecheck:tsc": "tsc -b"
   },
   "dependencies": {
-    "@opencode/core": "workspace:*",
-    "@opencode/ai": "workspace:*",
-    "@opencode/plugin": "workspace:*",
-    "@opencode/protocol": "workspace:*",
-    "@opencode/util": "workspace:*",
+    "@ainvil/core": "workspace:*",
+    "@ainvil/ai": "workspace:*",
+    "@ainvil/plugin": "workspace:*",
+    "@ainvil/protocol": "workspace:*",
+    "@ainvil/util": "workspace:*",
     "@opentui/core": "catalog:",
     "effect": "catalog:",
     "ws": "8.21.0"

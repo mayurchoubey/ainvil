@@ -1,4 +1,4 @@
-import type { OpenCodeEvent } from "@opencode/client/promise"
+import type { OpenCodeEvent } from "@ainvil/client/promise"
 import { expect, test } from "@playwright/test"
 import {
   captureConsoleWarnings,

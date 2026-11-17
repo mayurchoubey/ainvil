@@ -1,5 +1,5 @@
 /** @jsxImportSource @opentui/solid */
-import type { OpenCodeEvent } from "@opencode/client"
+import type { OpenCodeEvent } from "@ainvil/client"
 import { InputRenderable, TextareaRenderable } from "@opentui/core"
 import { testRender } from "@opentui/solid"
 import { expect, test } from "bun:test"

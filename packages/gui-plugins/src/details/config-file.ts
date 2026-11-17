@@ -1,4 +1,4 @@
-import type { ConfigEntry } from "@opencode/client"
+import type { ConfigEntry } from "@ainvil/client"
 
 type ConfigInfo = Extract<ConfigEntry, { type: "document" }>["info"]
 

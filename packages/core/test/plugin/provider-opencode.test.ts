@@ -1,33 +1,33 @@
 import { describe, expect } from "bun:test"
-import { ai } from "@opencode/ai/effect"
-import { LLMClient, RequestExecutor } from "@opencode/ai/route"
-import { Document, Event, Info } from "@opencode/schema/config"
-import { ConfigPolicy } from "@opencode/schema/config/policy"
-import { Money } from "@opencode/schema/money"
+import { ai } from "@ainvil/ai/effect"
+import { LLMClient, RequestExecutor } from "@ainvil/ai/route"
+import { Document, Event, Info } from "@ainvil/schema/config"
+import { ConfigPolicy } from "@ainvil/schema/config/policy"
+import { Money } from "@ainvil/schema/money"
 import { Effect, Fiber, Layer, Schema, Stream } from "effect"
 import { TestClock } from "effect/testing"
 import { HttpClient, HttpClientRequest, HttpClientResponse } from "effect/http"
-import { Agent } from "@opencode/core/agent"
-import { App } from "@opencode/core/app"
-import { Bus } from "@opencode/core/bus"
-import { Config } from "@opencode/core/config"
-import { ConfigIntegration } from "@opencode/core/config/integration"
-import { ConfigPolicyPlugin } from "@opencode/core/config/plugin/policy"
-import { ConfigProviderPlugin } from "@opencode/core/config/plugin/provider"
-import { ConfigWebSearchPlugin } from "@opencode/core/config/plugin/websearch"
-import { Credential } from "@opencode/core/credential"
-import { Integration } from "@opencode/core/integration"
-import { Model } from "@opencode/core/model"
-import { ModelResolver } from "@opencode/core/model-resolver"
-import { Plugin } from "@opencode/core/plugin"
-import { PluginHooks } from "@opencode/core/plugin/hooks"
-import { PluginHost } from "@opencode/core/plugin/host"
-import { OpenAIPlugin } from "@opencode/core/plugin/provider/openai"
-import { OpencodePlugin } from "@opencode/core/plugin/provider/opencode"
-import { Provider } from "@opencode/core/provider"
-import { Session } from "@opencode/core/session"
-import { Skill } from "@opencode/core/skill"
-import { WebSearch } from "@opencode/core/websearch"
+import { Agent } from "@ainvil/core/agent"
+import { App } from "@ainvil/core/app"
+import { Bus } from "@ainvil/core/bus"
+import { Config } from "@ainvil/core/config"
+import { ConfigIntegration } from "@ainvil/core/config/integration"
+import { ConfigPolicyPlugin } from "@ainvil/core/config/plugin/policy"
+import { ConfigProviderPlugin } from "@ainvil/core/config/plugin/provider"
+import { ConfigWebSearchPlugin } from "@ainvil/core/config/plugin/websearch"
+import { Credential } from "@ainvil/core/credential"
+import { Integration } from "@ainvil/core/integration"
+import { Model } from "@ainvil/core/model"
+import { ModelResolver } from "@ainvil/core/model-resolver"
+import { Plugin } from "@ainvil/core/plugin"
+import { PluginHooks } from "@ainvil/core/plugin/hooks"
+import { PluginHost } from "@ainvil/core/plugin/host"
+import { OpenAIPlugin } from "@ainvil/core/plugin/provider/openai"
+import { OpencodePlugin } from "@ainvil/core/plugin/provider/opencode"
+import { Provider } from "@ainvil/core/provider"
+import { Session } from "@ainvil/core/session"
+import { Skill } from "@ainvil/core/skill"
+import { WebSearch } from "@ainvil/core/websearch"
 import { withEnv } from "../fixture/env"
 import { drain } from "../lib/clock"
 import { eventually } from "../lib/eventually"
@@ -477,11 +477,11 @@ describe("OpencodePlugin", () => {
           const integrations = yield* Integration.Service
           yield* providers.transform((editor) => {
             editor.update(Provider.ID.openai, (provider) => {
-              provider.package = "@opencode/ai/providers/openai"
+              provider.package = "@ainvil/ai/providers/openai"
               provider.integrationID = Integration.ID.make("openai")
             })
             editor.models.update(Provider.ID.openai, Model.ID.make("api-model"), (model) => {
-              model.package = "@opencode/ai/providers/openai"
+              model.package = "@ainvil/ai/providers/openai"
               model.settings = { baseURL: "https://upstream.example/v1" }
               model.variants = [
                 {
@@ -513,7 +513,7 @@ describe("OpencodePlugin", () => {
             canonical: "openai",
             name: "Remote",
             integrationID: "opencode",
-            package: "@opencode/ai/providers/openai-compatible",
+            package: "@ainvil/ai/providers/openai-compatible",
             settings: { baseURL: `${server.url.origin}/v1`, custom: "value" },
             headers: { "x-org-id": "org" },
           })
@@ -530,7 +530,7 @@ describe("OpencodePlugin", () => {
             capabilities: { tools: true, input: ["text", "image"], output: ["text"] },
             cost: [{ input: 1, output: 2, cache: { read: 0.1, write: 0 } }],
             limit: { context: 1000, output: 100 },
-            package: "@opencode/ai/providers/openai-compatible",
+            package: "@ainvil/ai/providers/openai-compatible",
             settings: { baseURL: `${server.url.origin}/v1`, custom: "value", temperature: 0.5 },
             headers: { "x-org-id": "org" },
           })
@@ -541,7 +541,7 @@ describe("OpencodePlugin", () => {
             provider: "openai",
           })
           const override = required(yield* models.get(Provider.ID.make("remote"), Model.ID.make("override")))
-          expect(override.package).toBe("@opencode/ai/providers/anthropic")
+          expect(override.package).toBe("@ainvil/ai/providers/anthropic")
           expect(override.settings?.baseURL).toBe(`${server.url.origin}/anthropic`)
           expect(model.variants).toEqual([
             {
@@ -658,16 +658,16 @@ describe("OpencodePlugin", () => {
             },
           ])
           const gpt = required(yield* models.get(Provider.ID.make("remote"), Model.ID.make("gpt")))
-          expect(gpt.package).toBe("@opencode/ai/providers/openai")
+          expect(gpt.package).toBe("@ainvil/ai/providers/openai")
           expect(gpt.variants).toEqual(reasoner.variants)
           const claude = required(yield* models.get(Provider.ID.make("remote"), Model.ID.make("claude-sonnet-4-5")))
-          expect(claude.package).toBe("@opencode/ai/providers/anthropic")
+          expect(claude.package).toBe("@ainvil/ai/providers/anthropic")
           expect(claude.variants).toEqual([
             { id: Model.VariantID.make("high"), settings: { thinking: { type: "enabled", budgetTokens: 16_000 } } },
             { id: Model.VariantID.make("max"), settings: { thinking: { type: "enabled", budgetTokens: 31_999 } } },
           ])
           const gemini = required(yield* models.get(Provider.ID.make("remote"), Model.ID.make("gemini-3.1-pro")))
-          expect(gemini.package).toBe("@opencode/ai/providers/google")
+          expect(gemini.package).toBe("@ainvil/ai/providers/google")
           expect(gemini.variants).toEqual([
             {
               id: Model.VariantID.make("low"),
@@ -679,7 +679,7 @@ describe("OpencodePlugin", () => {
             },
           ])
           const magistral = required(yield* models.get(Provider.ID.make("remote"), Model.ID.make("magistral-medium")))
-          expect(magistral.package).toBe("@opencode/ai/providers/mistral")
+          expect(magistral.package).toBe("@ainvil/ai/providers/mistral")
           expect(magistral.variants).toEqual([
             { id: Model.VariantID.make("low"), settings: { reasoningEffort: "low" } },
             { id: Model.VariantID.make("high"), settings: { reasoningEffort: "high" } },

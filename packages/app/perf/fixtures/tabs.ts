@@ -1,4 +1,4 @@
-import { base64Encode } from "@opencode/util/encode"
+import { base64Encode } from "@ainvil/util/encode"
 import type { Page } from "@playwright/test"
 
 /**

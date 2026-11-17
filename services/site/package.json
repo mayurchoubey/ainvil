@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "@opencode/site",
+  "name": "@ainvil/site",
   "private": true,
   "type": "module",
   "license": "MIT",
@@ -23,7 +23,7 @@
   "dependencies": {
     "@ibm/plex": "6.4.1",
     "@kitlangton/rolling-number": "0.4.1",
-    "@opencode/ui": "workspace:*",
+    "@ainvil/ui": "workspace:*",
     "@solidjs/meta": "catalog:",
     "@solidjs/router": "catalog:",
     "@solidjs/start": "catalog:",

@@ -1,8 +1,8 @@
 export * as Flag from "./flag.js"
 
 import { Context, Effect, Option, Record } from "effect"
-import { ConfigFlag } from "@opencode/schema/config/flag"
-import type { Document, Entry } from "@opencode/schema/config"
+import { ConfigFlag } from "@ainvil/schema/config/flag"
+import type { Document, Entry } from "@ainvil/schema/config"
 import { App } from "./app.js"
 import { Config } from "./config.js"
 
@@ -18,7 +18,7 @@ export interface State {
  * `OPENCODE_FLAGS`, a comma-separated list such as `schedules,-media_blob`; a leading `-` turns a flag off, and
  * `all` turns every flag on unless the same list opts one out, as in `all,-media_blob`.
  */
-export const Overrides = Context.Reference<string | undefined>("@opencode/Flag/Overrides", {
+export const Overrides = Context.Reference<string | undefined>("@ainvil/Flag/Overrides", {
   defaultValue: () => process.env.OPENCODE_FLAGS,
 })
 

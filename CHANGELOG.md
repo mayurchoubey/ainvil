@@ -221,7 +221,7 @@ Release notes for OpenCode V2, newest first.
 
 #### TUI plugins require OpenTUI 0.8
 
-`@opencode/plugin` now requires `@opentui/core` and `@opentui/solid` 0.8.0 or later. In OpenTUI 0.8, a ScrollBox's `wrapper`, `viewport`, `content`, and scrollbars are facade objects instead of renderables, and a custom `RenderContext` must implement `clock` and `onAnimationTick`. See the [OpenTUI 0.8.0 release notes](https://opentui.com/docs/releases/0.8.0). ([#60385](https://github.com/anomalyco/opencode/pull/60385))
+`@ainvil/plugin` now requires `@opentui/core` and `@opentui/solid` 0.8.0 or later. In OpenTUI 0.8, a ScrollBox's `wrapper`, `viewport`, `content`, and scrollbars are facade objects instead of renderables, and a custom `RenderContext` must implement `clock` and `onAnimationTick`. See the [OpenTUI 0.8.0 release notes](https://opentui.com/docs/releases/0.8.0). ([#60385](https://github.com/anomalyco/opencode/pull/60385))
 
 #### Managed policy: `integration.use` covers integrations only
 
@@ -398,9 +398,9 @@ Release notes for OpenCode V2, newest first.
 
 ### Breaking changes
 
-#### `@opencode/ai` provider removals and renames
+#### `@ainvil/ai` provider removals and renames
 
-These changes affect code that imports `@opencode/ai` directly. They don't change the CLI, Desktop, or the HTTP API.
+These changes affect code that imports `@ainvil/ai` directly. They don't change the CLI, Desktop, or the HTTP API.
 
 - The fal, Black Forest Labs, Replicate, and Stability providers are removed, along with their `./providers/fal`, `./providers/black-forest-labs`, `./providers/replicate`, and `./providers/stability` entry points. ([#59977](https://github.com/anomalyco/opencode/pull/59977))
 - Five legacy entry points are removed. Import the nested paths instead, which 2.2.0 already exports: `./providers/amazon-bedrock-mantle` → `./providers/amazon-bedrock/mantle`, and `./providers/google-vertex-chat`, `-interactions`, `-mistral`, and `-responses` → `./providers/google-vertex/chat`, `/interactions`, `/mistral`, and `/responses`. ([#59506](https://github.com/anomalyco/opencode/pull/59506))
@@ -493,15 +493,15 @@ These changes affect code that imports `@opencode/ai` directly. They don't chang
 
 ### Breaking changes
 
-#### `@opencode/ai` root is now the Promise API
+#### `@ainvil/ai` root is now the Promise API
 
-`@opencode/ai` now works like `@opencode/sdk` and `@opencode/client`: the package root exports the Promise API, and the Effect API moved to `@opencode/ai/effect`. `@opencode/ai/promise` is removed, and the wildcard subpath export is replaced with an explicit list of provider and protocol entry points. ([#58847](https://github.com/anomalyco/opencode/pull/58847), [#59183](https://github.com/anomalyco/opencode/pull/59183))
+`@ainvil/ai` now works like `@ainvil/sdk` and `@ainvil/client`: the package root exports the Promise API, and the Effect API moved to `@ainvil/ai/effect`. `@ainvil/ai/promise` is removed, and the wildcard subpath export is replaced with an explicit list of provider and protocol entry points. ([#58847](https://github.com/anomalyco/opencode/pull/58847), [#59183](https://github.com/anomalyco/opencode/pull/59183))
 
 ```diff
--import { AI } from "@opencode/ai/promise"
--import { LLM } from "@opencode/ai"
-+import { AI } from "@opencode/ai"
-+import { LLM } from "@opencode/ai/effect"
+-import { AI } from "@ainvil/ai/promise"
+-import { LLM } from "@ainvil/ai"
++import { AI } from "@ainvil/ai"
++import { LLM } from "@ainvil/ai/effect"
 ```
 
 #### The OpenCode GitHub Action is removed
@@ -510,7 +510,7 @@ The OpenCode GitHub Action is no longer published. Remove it from your workflows
 
 #### TUI plugins require OpenTUI 0.7
 
-`@opencode/plugin` now requires `@opentui/core` and `@opentui/solid` 0.7.0, up from 0.6.8 or later. Plugins that depend on OpenTUI 0.6 fail to install until they upgrade. In OpenTUI 0.7, custom renderables read their hooks from their class at construction: assign `renderBefore`, `renderAfter`, and `onLifecyclePass` in the constructor instead of as class fields, call `refreshHooks()` after adding a hook by reflection, and replace `defineNativeIntegration()` with a `static nativeIntegration` declaration. See the [OpenTUI 0.7.0 release notes](https://opentui.com/docs/releases/0.7.0). ([#59295](https://github.com/anomalyco/opencode/pull/59295))
+`@ainvil/plugin` now requires `@opentui/core` and `@opentui/solid` 0.7.0, up from 0.6.8 or later. Plugins that depend on OpenTUI 0.6 fail to install until they upgrade. In OpenTUI 0.7, custom renderables read their hooks from their class at construction: assign `renderBefore`, `renderAfter`, and `onLifecyclePass` in the constructor instead of as class fields, call `refreshHooks()` after adding a hook by reflection, and replace `defineNativeIntegration()` with a `static nativeIntegration` declaration. See the [OpenTUI 0.7.0 release notes](https://opentui.com/docs/releases/0.7.0). ([#59295](https://github.com/anomalyco/opencode/pull/59295))
 
 ### Core
 
@@ -1378,7 +1378,7 @@ The transitional `session.compacted` event is removed from the public event surf
 #### Improvements
 
 - Added startup plugin seeding to Effect embedded hosts and workerd through `OpenCode.create({ plugins })` and `OpenCodeWorkerd.create({ plugins })`.
-- Re-exported `WorkspaceDriver`, `EnvironmentDriver`, and `EnvironmentFiles` from `@opencode/sdk/effect`.
+- Re-exported `WorkspaceDriver`, `EnvironmentDriver`, and `EnvironmentFiles` from `@ainvil/sdk/effect`.
 
 #### Bug fixes
 

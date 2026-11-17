@@ -1,8 +1,8 @@
 import { describe, expect, jest, test } from "bun:test"
 import { createStore, produce } from "solid-js/store"
-import { ClientError, type PersistentPtyInfo } from "@opencode/client"
-import type { Layout, ServerRef, SessionRef, Storage, ToastOptions } from "@opencode/plugin/gui"
-import { PtyFeatureUnsupportedError, PtyNotFoundError, ServiceUnavailableError } from "@opencode/protocol/errors"
+import { ClientError, type PersistentPtyInfo } from "@ainvil/client"
+import type { Layout, ServerRef, SessionRef, Storage, ToastOptions } from "@ainvil/plugin/gui"
+import { PtyFeatureUnsupportedError, PtyNotFoundError, ServiceUnavailableError } from "@ainvil/protocol/errors"
 import { TERMINAL_REQUEST_TIMEOUT_MS } from "./machine"
 import { createTerminalModel } from "./model"
 

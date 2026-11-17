@@ -1,8 +1,8 @@
 import { createSignal, Index, Show } from "solid-js"
 import { Effect, Option, Predicate, Schema } from "effect"
-import { Button } from "@opencode/ui/button"
-import { Dialog } from "@opencode/ui/dialog"
-import { usePlugin, type DialogHandle, type SetupContext } from "@opencode/plugin/gui"
+import { Button } from "@ainvil/ui/button"
+import { Dialog } from "@ainvil/ui/dialog"
+import { usePlugin, type DialogHandle, type SetupContext } from "@ainvil/plugin/gui"
 import type definition from "./index"
 
 const CHANGELOG_URL = "https://opencode.ai/changelog.json"

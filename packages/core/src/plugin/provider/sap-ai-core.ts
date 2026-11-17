@@ -1,6 +1,6 @@
 import { Effect } from "effect"
-import { define } from "@opencode/plugin/effect/plugin"
-import { Npm } from "@opencode/util/npm"
+import { define } from "@ainvil/plugin/effect/plugin"
+import { Npm } from "@ainvil/util/npm"
 import { Provider } from "../../provider.js"
 import { loadSDKFactory } from "./sdk-factory.js"
 

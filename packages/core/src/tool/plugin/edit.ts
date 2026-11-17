@@ -6,9 +6,9 @@
  */
 export * as EditTool from "./edit.js"
 
-import type { Context } from "@opencode/plugin/effect/plugin"
-import { ToolFailure } from "@opencode/ai/effect"
-import { FileDiff } from "@opencode/schema/file-diff"
+import type { Context } from "@ainvil/plugin/effect/plugin"
+import { ToolFailure } from "@ainvil/ai/effect"
+import { FileDiff } from "@ainvil/schema/file-diff"
 import { Effect, Schema } from "effect"
 import { toolFailure } from "../runtime.js"
 import { Environment } from "../../environment/index.js"

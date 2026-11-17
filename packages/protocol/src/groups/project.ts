@@ -1,4 +1,4 @@
-import { Project } from "@opencode/schema/project"
+import { Project } from "@ainvil/schema/project"
 import { Schema, SchemaGetter, Struct } from "effect"
 import { HttpApiEndpoint, HttpApiGroup, OpenApi } from "effect/http-api"
 import { ProjectNotFoundError } from "../errors.js"

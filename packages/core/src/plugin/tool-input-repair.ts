@@ -1,7 +1,7 @@
 export * as ToolInputRepairPlugin from "./tool-input-repair.js"
 
-import { ToolFailure } from "@opencode/ai/effect"
-import { define } from "@opencode/plugin/effect/plugin"
+import { ToolFailure } from "@ainvil/ai/effect"
+import { define } from "@ainvil/plugin/effect/plugin"
 import { Effect, JsonSchema, Option, Predicate, Schema } from "effect"
 import { definition, normalizeContent } from "../tool/runtime.js"
 

@@ -208,7 +208,7 @@ export const content = {
       features: {
         "typescript-client": {
           title: "TypeScript istemcisi",
-          body: "@opencode/client ile aynı değerlere sahip tipli istekler ve olaylar.",
+          body: "@ainvil/client ile aynı değerlere sahip tipli istekler ve olaylar.",
         },
         "sessions-from-code": {
           title: "Koddan oturumlar",
@@ -220,7 +220,7 @@ export const content = {
         },
         "npm-or-bun": {
           title: "npm ya da bun",
-          body: "npm i @opencode/sdk ya da bun add @opencode/sdk ile kurun.",
+          body: "npm i @ainvil/sdk ya da bun add @ainvil/sdk ile kurun.",
         },
         "in-process-host": {
           title: "Süreç içi host",

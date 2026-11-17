@@ -2,20 +2,20 @@ import { expect } from "bun:test"
 import { cp } from "node:fs/promises"
 import path from "node:path"
 import { Brand, Cause, Deferred, Effect, Exit, Fiber, Layer, Option, Schedule, Schema, Scope, Stream } from "effect"
-import { Agent } from "@opencode/schema/agent"
-import { Session } from "@opencode/schema/session"
-import { SessionMessage } from "@opencode/schema/session-message"
-import { AppNodeBuilder } from "@opencode/core/effect/app-node-builder"
-import { Watcher } from "@opencode/core/filesystem/watcher"
-import { Plugin } from "@opencode/core/plugin"
-import { PluginModule } from "@opencode/core/plugin/module"
-import { Rpc } from "@opencode/core/rpc"
-import { Tool } from "@opencode/core/tool"
-import { execute } from "@opencode/core/tool/runtime"
-import { Global } from "@opencode/util/global"
-import { Npm } from "@opencode/util/npm"
-import { createForeignPackageFilter, ensurePluginRuntime } from "@opencode/plugin/runtime"
-import { createLoader, discoverPluginRuntimeSpecifiers, pluginRuntimeLoaderCode } from "@opencode/plugin/runtime-modules"
+import { Agent } from "@ainvil/schema/agent"
+import { Session } from "@ainvil/schema/session"
+import { SessionMessage } from "@ainvil/schema/session-message"
+import { AppNodeBuilder } from "@ainvil/core/effect/app-node-builder"
+import { Watcher } from "@ainvil/core/filesystem/watcher"
+import { Plugin } from "@ainvil/core/plugin"
+import { PluginModule } from "@ainvil/core/plugin/module"
+import { Rpc } from "@ainvil/core/rpc"
+import { Tool } from "@ainvil/core/tool"
+import { execute } from "@ainvil/core/tool/runtime"
+import { Global } from "@ainvil/util/global"
+import { Npm } from "@ainvil/util/npm"
+import { createForeignPackageFilter, ensurePluginRuntime } from "@ainvil/plugin/runtime"
+import { createLoader, discoverPluginRuntimeSpecifiers, pluginRuntimeLoaderCode } from "@ainvil/plugin/runtime-modules"
 import { tempGlobalLayer } from "../fixture/global"
 import { setOrganizationPolicy } from "../fixture/policy"
 import { tmpdirScoped } from "../fixture/tmpdir"
@@ -106,7 +106,7 @@ it.live("interrupts pending watcher setup when the loader scope closes during mo
   }),
 )
 
-it.live("loads plugins and their transitive dependencies against the host's Effect and @opencode/plugin instances", () =>
+it.live("loads plugins and their transitive dependencies against the host's Effect and @ainvil/plugin instances", () =>
   Effect.gen(function* () {
     const directory = yield* tmpdirScoped()
     const pluginDir = path.join(directory.path, "plugin")
@@ -153,12 +153,12 @@ export const depToolInput = Schema.Struct({
   code: Schema.Trim.check(Schema.isPattern(/^v[0-9]+$/)),
 })
 export const depCaptured = { Effect, Schema, some }`,
-        "node_modules/@opencode/plugin/package.json":
-          '{"name":"@opencode/plugin","type":"module","exports":{"./effect":"./effect.js","./rpc":"./rpc.js"}}',
-        "node_modules/@opencode/plugin/effect.js": "export const Plugin = { define: (p) => p }",
-        "node_modules/@opencode/plugin/rpc.js": "export const Rpc = { define: (d) => d }",
-        "index.ts": `import { Plugin } from "@opencode/plugin/effect"
-import { Rpc } from "@opencode/plugin/rpc"
+        "node_modules/@ainvil/plugin/package.json":
+          '{"name":"@ainvil/plugin","type":"module","exports":{"./effect":"./effect.js","./rpc":"./rpc.js"}}',
+        "node_modules/@ainvil/plugin/effect.js": "export const Plugin = { define: (p) => p }",
+        "node_modules/@ainvil/plugin/rpc.js": "export const Rpc = { define: (d) => d }",
+        "index.ts": `import { Plugin } from "@ainvil/plugin/effect"
+import { Rpc } from "@ainvil/plugin/rpc"
 import { Effect, Schema } from "effect"
 import { some } from "effect/Option"
 import { nominal } from "effect/Brand"
@@ -324,8 +324,8 @@ it.live("discovers exported specifiers from the resolved tree even when dist/ ex
 
     yield* Effect.promise(() =>
       writeFiles(directory.path, {
-        "consumer/node_modules/@opencode/plugin/package.json": JSON.stringify({
-          name: "@opencode/plugin",
+        "consumer/node_modules/@ainvil/plugin/package.json": JSON.stringify({
+          name: "@ainvil/plugin",
           type: "module",
           exports: {
             ".": "./src/promise/index.ts",
@@ -334,25 +334,25 @@ it.live("discovers exported specifiers from the resolved tree even when dist/ ex
             "./gui/*": "./src/gui/*.ts",
           },
         }),
-        "consumer/node_modules/@opencode/plugin/src/promise/index.ts": "export const root = 'src'",
-        "consumer/node_modules/@opencode/plugin/src/effect/index.ts": "export * as plugin from './plugin.ts'",
-        "consumer/node_modules/@opencode/plugin/src/effect/plugin.ts": "export const leaf = 'src'",
-        "consumer/node_modules/@opencode/plugin/src/unexported.ts": "export const secret = true",
-        "consumer/node_modules/@opencode/plugin/src/gui/sdk/index.ts": "export const window = true",
-        "consumer/node_modules/@opencode/plugin/dist/promise/index.js": "export const root = 'dist'",
-        "consumer/node_modules/@opencode/plugin/dist/effect/index.js": "export const index = 'dist'",
-        "consumer/node_modules/@opencode/plugin/dist/effect/plugin.js": "export const leaf = 'dist'",
+        "consumer/node_modules/@ainvil/plugin/src/promise/index.ts": "export const root = 'src'",
+        "consumer/node_modules/@ainvil/plugin/src/effect/index.ts": "export * as plugin from './plugin.ts'",
+        "consumer/node_modules/@ainvil/plugin/src/effect/plugin.ts": "export const leaf = 'src'",
+        "consumer/node_modules/@ainvil/plugin/src/unexported.ts": "export const secret = true",
+        "consumer/node_modules/@ainvil/plugin/src/gui/sdk/index.ts": "export const window = true",
+        "consumer/node_modules/@ainvil/plugin/dist/promise/index.js": "export const root = 'dist'",
+        "consumer/node_modules/@ainvil/plugin/dist/effect/index.js": "export const index = 'dist'",
+        "consumer/node_modules/@ainvil/plugin/dist/effect/plugin.js": "export const leaf = 'dist'",
         "async-mod.ts": "await new Promise((r) => setTimeout(r, 20)); export const nonce = Math.random()",
       }),
     )
 
-    const discovered = discoverPluginRuntimeSpecifiers(consumerDir, ["@opencode/plugin"])
-    expect(discovered.get("@opencode/plugin")?.replaceAll("\\", "/")).toEndWith("src/promise/index.ts")
-    expect(discovered.get("@opencode/plugin/effect")?.replaceAll("\\", "/")).toEndWith("src/effect/index.ts")
-    expect(discovered.get("@opencode/plugin/effect/plugin")?.replaceAll("\\", "/")).toEndWith("src/effect/plugin.ts")
-    expect(discovered.has("@opencode/plugin/unexported")).toBe(false)
+    const discovered = discoverPluginRuntimeSpecifiers(consumerDir, ["@ainvil/plugin"])
+    expect(discovered.get("@ainvil/plugin")?.replaceAll("\\", "/")).toEndWith("src/promise/index.ts")
+    expect(discovered.get("@ainvil/plugin/effect")?.replaceAll("\\", "/")).toEndWith("src/effect/index.ts")
+    expect(discovered.get("@ainvil/plugin/effect/plugin")?.replaceAll("\\", "/")).toEndWith("src/effect/plugin.ts")
+    expect(discovered.has("@ainvil/plugin/unexported")).toBe(false)
     // The GUI SDK runs in the app; the server and TUI runtime never load it.
-    expect([...discovered.keys()].filter((specifier) => specifier.startsWith("@opencode/plugin/gui"))).toEqual([])
+    expect([...discovered.keys()].filter((specifier) => specifier.startsWith("@ainvil/plugin/gui"))).toEqual([])
 
     const hostDiscovered = discoverPluginRuntimeSpecifiers()
     expect(hostDiscovered.has("effect/schema/SchemaJITCompiler")).toBe(true)

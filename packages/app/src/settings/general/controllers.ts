@@ -1,7 +1,7 @@
 import { createEffect, createMemo, createSignal, onMount, untrack, type Accessor } from "solid-js"
-import type { ConfigShellOption } from "@opencode/client/promise"
-import type { ColorScheme } from "@opencode/ui/theme/context"
-import { useTheme } from "@opencode/ui/theme/context"
+import type { ConfigShellOption } from "@ainvil/client/promise"
+import type { ColorScheme } from "@ainvil/ui/theme/context"
+import { useTheme } from "@ainvil/ui/theme/context"
 import {
   monoDefault,
   monoFontFamily,

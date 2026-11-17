@@ -1,7 +1,7 @@
-import { Icon } from "@opencode/ui/icon"
-import { Switch } from "@opencode/ui/switch"
-import { Tabs } from "@opencode/ui/tabs"
-import { isLocationNotFoundError } from "@opencode/client/promise"
+import { Icon } from "@ainvil/ui/icon"
+import { Switch } from "@ainvil/ui/switch"
+import { Tabs } from "@ainvil/ui/tabs"
+import { isLocationNotFoundError } from "@ainvil/client/promise"
 import {
   type Component,
   For,

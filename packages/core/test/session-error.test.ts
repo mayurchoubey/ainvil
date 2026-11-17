@@ -14,15 +14,15 @@ import {
   UnknownProviderError,
   ToolFailure,
   HttpContext,
-} from "@opencode/ai/effect"
-import { RequestExecutor } from "@opencode/ai/route"
-import { Permission } from "@opencode/core/permission"
-import { ID } from "@opencode/core/model"
-import { ModelResolver } from "@opencode/core/model-resolver"
-import { Provider } from "@opencode/core/provider"
-import { Tool } from "@opencode/schema/tool"
-import { toSessionError } from "@opencode/core/session/to-session-error"
-import { SessionRunnerRetry } from "@opencode/core/session/runner/retry"
+} from "@ainvil/ai/effect"
+import { RequestExecutor } from "@ainvil/ai/route"
+import { Permission } from "@ainvil/core/permission"
+import { ID } from "@ainvil/core/model"
+import { ModelResolver } from "@ainvil/core/model-resolver"
+import { Provider } from "@ainvil/core/provider"
+import { Tool } from "@ainvil/schema/tool"
+import { toSessionError } from "@ainvil/core/session/to-session-error"
+import { SessionRunnerRetry } from "@ainvil/core/session/runner/retry"
 
 const llm = (reason: AIError["reason"]) => new AIError({ reason })
 
@@ -299,7 +299,7 @@ describe("toSessionError", () => {
     const configuration = new ModelResolver.ModelConfigurationError({
       providerID: Provider.ID.make("azure"),
       modelID: ID.make("gpt-5.4-nano"),
-      package: "@opencode/ai/providers/azure/responses",
+      package: "@ainvil/ai/providers/azure/responses",
       detail: "Azure requires resourceName or baseURL",
     })
     expect(toSessionError(configuration)).toEqual({
@@ -309,13 +309,13 @@ describe("toSessionError", () => {
     const initialization = new ModelResolver.ModelInitializationError({
       providerID: Provider.ID.make("custom"),
       modelID: ID.make("model"),
-      package: "@opencode/ai/providers/custom",
+      package: "@ainvil/ai/providers/custom",
       phase: "load",
-      detail: "Provider package @opencode/ai/providers/custom is broken",
+      detail: "Provider package @ainvil/ai/providers/custom is broken",
     })
     expect(toSessionError(initialization)).toEqual({
       type: "provider.no-route",
-      message: "Cannot initialize custom/model: Provider package @opencode/ai/providers/custom is broken",
+      message: "Cannot initialize custom/model: Provider package @ainvil/ai/providers/custom is broken",
     })
   })
 

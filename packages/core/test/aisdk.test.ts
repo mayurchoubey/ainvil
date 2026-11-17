@@ -1,12 +1,12 @@
 import { APICallError } from "@ai-sdk/provider"
 import type { LanguageModelV3, LanguageModelV3StreamPart } from "@ai-sdk/provider"
 import { createOpenAICompatible } from "@ai-sdk/openai-compatible"
-import { AISDK } from "@opencode/core/aisdk"
-import { ModelRetry } from "@opencode/core/model-retry"
-import { SessionRunnerRetry } from "@opencode/core/session/runner/retry"
-import { toSessionError } from "@opencode/core/session/to-session-error"
-import { Model } from "@opencode/core/model"
-import { Provider } from "@opencode/core/provider"
+import { AISDK } from "@ainvil/core/aisdk"
+import { ModelRetry } from "@ainvil/core/model-retry"
+import { SessionRunnerRetry } from "@ainvil/core/session/runner/retry"
+import { toSessionError } from "@ainvil/core/session/to-session-error"
+import { Model } from "@ainvil/core/model"
+import { Provider } from "@ainvil/core/provider"
 import {
   ai,
   AIError,
@@ -21,14 +21,14 @@ import {
   RateLimitError,
   TransportError,
   UnknownProviderError,
-} from "@opencode/ai/effect"
-import { LLMClient, RequestExecutor } from "@opencode/ai/route"
-import { compileRequest } from "@opencode/ai/testing"
+} from "@ainvil/ai/effect"
+import { LLMClient, RequestExecutor } from "@ainvil/ai/route"
+import { compileRequest } from "@ainvil/ai/testing"
 import { expect } from "bun:test"
 import { Effect, Layer } from "effect"
 import { HttpClientRequest, HttpClientResponse } from "effect/http"
-import { AppNodeBuilder } from "@opencode/core/effect/app-node-builder"
-import { LayerNodePlatform } from "@opencode/util/effect/app-node-platform"
+import { AppNodeBuilder } from "@ainvil/core/effect/app-node-builder"
+import { LayerNodePlatform } from "@ainvil/util/effect/app-node-platform"
 import { testEffect } from "./lib/effect"
 
 const it = testEffect(AISDK.locationLayer)

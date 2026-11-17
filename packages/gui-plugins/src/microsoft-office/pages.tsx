@@ -1,8 +1,8 @@
 import { createMemo, createSignal, Index, onCleanup, onMount, Show, untrack, type JSX } from "solid-js"
 import { createResizeObserver } from "@solid-primitives/resize-observer"
-import { createKeyed } from "@opencode/plugin/gui"
-import { PreviewControls } from "@opencode/ui/preview-controls"
-import { DocumentSurface } from "@opencode/ui/document-surface"
+import { createKeyed } from "@ainvil/plugin/gui"
+import { PreviewControls } from "@ainvil/ui/preview-controls"
+import { DocumentSurface } from "@ainvil/ui/document-surface"
 import {
   INITIAL_OFFICE_PAGES_STATE,
   pageFit,

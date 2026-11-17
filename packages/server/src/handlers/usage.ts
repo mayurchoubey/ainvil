@@ -1,5 +1,5 @@
-import { UsageLimits } from "@opencode/core/usage-limits"
-import { ServiceUnavailableError } from "@opencode/protocol/errors"
+import { UsageLimits } from "@ainvil/core/usage-limits"
+import { ServiceUnavailableError } from "@ainvil/protocol/errors"
 import { Effect } from "effect"
 import { HttpApiBuilder } from "effect/http-api"
 import { Api } from "../api"

@@ -1,8 +1,8 @@
 /** @jsxImportSource @opentui/solid */
-import type { FileDiffInfo, LocationRef } from "@opencode/client"
-import type { Vcs } from "@opencode/schema/vcs"
-import { Plugin } from "@opencode/plugin/tui"
-import type { KeymapCommand, PanelInput, Route } from "@opencode/plugin/tui/context"
+import type { FileDiffInfo, LocationRef } from "@ainvil/client"
+import type { Vcs } from "@ainvil/schema/vcs"
+import { Plugin } from "@ainvil/plugin/tui"
+import type { KeymapCommand, PanelInput, Route } from "@ainvil/plugin/tui/context"
 import {
   MouseButton,
   TextAttributes,

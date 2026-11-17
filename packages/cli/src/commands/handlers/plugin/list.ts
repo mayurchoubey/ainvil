@@ -1,17 +1,17 @@
 import { EOL } from "node:os"
 import path from "node:path"
 import { Effect } from "effect"
-import { OpenCode, type PluginInfo } from "@opencode/client"
-import { Service } from "@opencode/client/effect/service"
+import { OpenCode, type PluginInfo } from "@ainvil/client"
+import { Service } from "@ainvil/client/effect/service"
 import { Commands } from "../../commands"
 import { Runtime } from "../../../framework/runtime"
 import { ServerConnection } from "../../../services/server-connection"
 import { Config } from "../../../config"
-import { Global } from "@opencode/util/global"
-import { Npm } from "@opencode/util/npm"
-import { Host } from "@opencode/plugin/host"
+import { Global } from "@ainvil/util/global"
+import { Npm } from "@ainvil/util/npm"
+import { Host } from "@ainvil/plugin/host"
 import { fileURLToPath } from "node:url"
-import { discoverPluginTargets, localPluginDirectories, localSource } from "@opencode/tui/plugin/discovery"
+import { discoverPluginTargets, localPluginDirectories, localSource } from "@ainvil/tui/plugin/discovery"
 
 export default Runtime.handler(
   Commands.commands.plugin.commands.list,

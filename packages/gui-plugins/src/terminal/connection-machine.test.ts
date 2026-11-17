@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test"
-import { persistentPtyFrame } from "@opencode/client/solid"
+import { persistentPtyFrame } from "@ainvil/client/solid"
 import {
   createConnectionState,
   transitionConnection,

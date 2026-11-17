@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test"
 import { QueryClient } from "@tanstack/solid-query"
-import { OpenCode, type LocationGetInput } from "@opencode/client/promise"
+import { OpenCode, type LocationGetInput } from "@ainvil/client/promise"
 import { createStore } from "solid-js/store"
 import { bootstrapGlobal, inferHomeDirectory, loadPathQuery, loadProjectsQuery } from "./bootstrap"
 import { ServerScope } from "@/runtime/server/scope"

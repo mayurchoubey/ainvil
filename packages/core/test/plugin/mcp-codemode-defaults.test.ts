@@ -1,6 +1,6 @@
 import { expect } from "bun:test"
-import { McpCodeModeDefaultsPlugin } from "@opencode/core/plugin/mcp-codemode-defaults"
-import type { Mcp } from "@opencode/schema/mcp"
+import { McpCodeModeDefaultsPlugin } from "@ainvil/core/plugin/mcp-codemode-defaults"
+import type { Mcp } from "@ainvil/schema/mcp"
 import { Effect, type Types } from "effect"
 import { it } from "../lib/effect"
 import { host } from "./host"

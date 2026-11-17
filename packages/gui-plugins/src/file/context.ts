@@ -1,7 +1,7 @@
 import { createContext, useContext, type Accessor } from "solid-js"
-import type { Browser } from "@opencode/plugin/gui/browser"
-import type { Changes } from "@opencode/plugin/gui/review"
-import type { LineRange, Live, MountedSession, OpenOptions } from "@opencode/plugin/gui"
+import type { Browser } from "@ainvil/plugin/gui/browser"
+import type { Changes } from "@ainvil/plugin/gui/review"
+import type { LineRange, Live, MountedSession, OpenOptions } from "@ainvil/plugin/gui"
 import type { OpenApp } from "./apps"
 import type { PickerView } from "./picker-machine"
 

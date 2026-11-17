@@ -1,4 +1,4 @@
-import { mediaHashFromUri, type OpenCodeClient } from "@opencode/client/promise"
+import { mediaHashFromUri, type OpenCodeClient } from "@ainvil/client/promise"
 
 export { mediaHashFromUri }
 

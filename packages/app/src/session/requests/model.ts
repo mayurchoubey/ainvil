@@ -1,6 +1,6 @@
 import { createEffect, createMemo, createSignal, onCleanup, untrack } from "solid-js"
-import { isPermissionNotFoundError, type FormInfo, type PermissionRequest } from "@opencode/client/promise"
-import { abort } from "@opencode/util/abort"
+import { isPermissionNotFoundError, type FormInfo, type PermissionRequest } from "@ainvil/client/promise"
+import { abort } from "@ainvil/util/abort"
 import { useParams } from "@solidjs/router"
 import { showToast } from "@/shell/notifications/toast"
 import { useServerSDK } from "@/runtime/server/client"

@@ -16,8 +16,8 @@ import {
   prefersReducedMotion,
   Spring,
   type DurationOptions,
-} from "@opencode/ui/motion"
-import { motionTuning } from "@opencode/ui/motion-tuning"
+} from "@ainvil/ui/motion"
+import { motionTuning } from "@ainvil/ui/motion-tuning"
 import {
   createGrowState,
   createMorphState,

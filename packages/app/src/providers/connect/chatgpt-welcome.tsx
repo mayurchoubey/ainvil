@@ -1,7 +1,7 @@
-import { Button } from "@opencode/ui/button"
-import { useDialog } from "@opencode/ui/context/dialog"
-import { Dialog, DialogTitle } from "@opencode/ui/dialog"
-import { ProviderIcon } from "@opencode/ui/provider-icon"
+import { Button } from "@ainvil/ui/button"
+import { useDialog } from "@ainvil/ui/context/dialog"
+import { Dialog, DialogTitle } from "@ainvil/ui/dialog"
+import { ProviderIcon } from "@ainvil/ui/provider-icon"
 import { useLanguage } from "@/runtime/i18n/language"
 import { ExternalLink } from "@/runtime/platform/external-link"
 

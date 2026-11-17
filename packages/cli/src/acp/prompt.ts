@@ -1,6 +1,6 @@
 import type { ContentBlock } from "@agentclientprotocol/sdk"
-import type { Command } from "@opencode/schema/command"
-import { SessionMessage } from "@opencode/schema/session-message"
+import type { Command } from "@ainvil/schema/command"
+import { SessionMessage } from "@ainvil/schema/session-message"
 import { Effect } from "effect"
 import { access, constants } from "node:fs/promises"
 import { fileURLToPath } from "node:url"

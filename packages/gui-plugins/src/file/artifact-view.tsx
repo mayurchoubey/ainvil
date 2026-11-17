@@ -13,19 +13,19 @@ import {
 import { createStore } from "solid-js/store"
 import { Dynamic } from "solid-js/web"
 import { createResizeObserver } from "@solid-primitives/resize-observer"
-import { PreviewControls } from "@opencode/ui/preview-controls"
-import { useDialog } from "@opencode/ui/context/dialog"
-import { FileIcon } from "@opencode/ui/file-icon"
-import { Icon } from "@opencode/ui/icon"
-import { IconButton } from "@opencode/ui/icon-button"
-import { ImagePreview } from "@opencode/ui/image-preview"
-import { Loader } from "@opencode/ui/loader"
-import { showToast } from "@opencode/ui/toast"
-import { Markdown } from "@opencode/session-ui/markdown"
-import { MarkdownProvider, useMarkdown } from "@opencode/session-ui/context/markdown"
-import { artifactKind } from "@opencode/util/artifact"
-import { getDirectory, getFilename } from "@opencode/util/path"
-import { createKeyed, usePlugin, type FileContent, type MountedSession, type SessionScreen } from "@opencode/plugin/gui"
+import { PreviewControls } from "@ainvil/ui/preview-controls"
+import { useDialog } from "@ainvil/ui/context/dialog"
+import { FileIcon } from "@ainvil/ui/file-icon"
+import { Icon } from "@ainvil/ui/icon"
+import { IconButton } from "@ainvil/ui/icon-button"
+import { ImagePreview } from "@ainvil/ui/image-preview"
+import { Loader } from "@ainvil/ui/loader"
+import { showToast } from "@ainvil/ui/toast"
+import { Markdown } from "@ainvil/session-ui/markdown"
+import { MarkdownProvider, useMarkdown } from "@ainvil/session-ui/context/markdown"
+import { artifactKind } from "@ainvil/util/artifact"
+import { getDirectory, getFilename } from "@ainvil/util/path"
+import { createKeyed, usePlugin, type FileContent, type MountedSession, type SessionScreen } from "@ainvil/plugin/gui"
 import {
   blobUrlFromContent,
   bytesFromContent,
@@ -35,8 +35,8 @@ import {
   splitFrontmatter,
   type FrontmatterProperty,
 } from "./artifact"
-import { FileViewer } from "@opencode/plugin/gui/file"
-import { uuid } from "@opencode/util/uuid"
+import { FileViewer } from "@ainvil/plugin/gui/file"
+import { uuid } from "@ainvil/util/uuid"
 import { ArtifactToolbar } from "./artifact-toolbar"
 import {
   createArtifactViewerState,

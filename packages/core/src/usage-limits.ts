@@ -1,11 +1,11 @@
 export * as UsageLimits from "./usage-limits.js"
 
-import { Model } from "@opencode/schema/model"
-import { Money } from "@opencode/schema/money"
-import { Provider } from "@opencode/schema/provider"
-import { UsageLimits } from "@opencode/schema/usage-limits"
-import { makeLocationNode } from "@opencode/util/effect/app-node"
-import { httpClient } from "@opencode/util/effect/app-node-platform"
+import { Model } from "@ainvil/schema/model"
+import { Money } from "@ainvil/schema/money"
+import { Provider } from "@ainvil/schema/provider"
+import { UsageLimits } from "@ainvil/schema/usage-limits"
+import { makeLocationNode } from "@ainvil/util/effect/app-node"
+import { httpClient } from "@ainvil/util/effect/app-node-platform"
 import { Context, Duration, Effect, Layer, Schema } from "effect"
 import { HttpClient, HttpClientRequest, HttpClientResponse } from "effect/http"
 import { ConsoleAccess } from "./console-access.js"
@@ -24,7 +24,7 @@ export interface Interface {
   readonly get: () => Effect.Effect<Info | undefined, UnavailableError>
 }
 
-export class Service extends Context.Service<Service, Interface>()("@opencode/UsageLimits") {}
+export class Service extends Context.Service<Service, Interface>()("@ainvil/UsageLimits") {}
 
 export const layer = Layer.effect(
   Service,

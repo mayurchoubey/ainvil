@@ -1,5 +1,5 @@
-import type { LocationGetOutput, ModelRef, OpenCodeClient, SessionInfo } from "@opencode/client/promise"
-import { Model } from "@opencode/schema/model"
+import type { LocationGetOutput, ModelRef, OpenCodeClient, SessionInfo } from "@ainvil/client/promise"
+import { Model } from "@ainvil/schema/model"
 import path from "node:path"
 import { errorMessage } from "./util/error"
 

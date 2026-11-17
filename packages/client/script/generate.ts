@@ -1,55 +1,55 @@
 import { NodeFileSystem } from "@effect/platform-node"
-import { compile, emitEffectImported, emitEffectShape, emitPromise, write } from "@opencode/httpapi-codegen"
+import { compile, emitEffectImported, emitEffectShape, emitPromise, write } from "@ainvil/httpapi-codegen"
 import {
   ClientApi,
   clientNamespace,
   effectOmitEndpoints,
   groupNames,
   promiseOmitEndpoints,
-} from "@opencode/protocol/client"
-import { Agent } from "@opencode/schema/agent"
-import { Artifact } from "@opencode/schema/artifact"
-import { Command } from "@opencode/schema/command"
-import { Config } from "@opencode/schema/config"
-import { Credential } from "@opencode/schema/credential"
-import { Event } from "@opencode/schema/event"
-import { EventLog } from "@opencode/schema/event-log"
-import { FileDiff } from "@opencode/schema/file-diff"
-import { FileSystem } from "@opencode/schema/filesystem"
-import { Form } from "@opencode/schema/form"
-import { Generate } from "@opencode/schema/generate"
-import { Instruction } from "@opencode/schema/instruction"
-import { InstructionEntry } from "@opencode/schema/instruction-entry"
-import { Integration } from "@opencode/schema/integration"
-import { Job } from "@opencode/schema/job"
-import { Location } from "@opencode/schema/location"
-import { Mcp } from "@opencode/schema/mcp"
-import { Model } from "@opencode/schema/model"
-import { Money } from "@opencode/schema/money"
-import { Permission } from "@opencode/schema/permission"
-import { PermissionSaved } from "@opencode/schema/permission-saved"
-import { Plugin } from "@opencode/schema/plugin"
-import { Project } from "@opencode/schema/project"
-import { Worktree } from "@opencode/schema/worktree"
-import { AgentAttachment, FileAttachment, Prompt, PromptMention } from "@opencode/schema/prompt"
-import { PromptInput } from "@opencode/schema/prompt-input"
-import { Provider } from "@opencode/schema/provider"
-import { Pty } from "@opencode/schema/pty"
-import { PtyTicket } from "@opencode/schema/pty-ticket"
-import { Question } from "@opencode/schema/question"
-import { Reference } from "@opencode/schema/reference"
-import { AbsolutePath, RelativePath } from "@opencode/schema/schema"
-import { Schedule } from "@opencode/schema/schedule"
-import { Session } from "@opencode/schema/session"
-import { SessionMessage } from "@opencode/schema/session-message"
-import { SessionInbox } from "@opencode/schema/session-inbox"
-import { Shell } from "@opencode/schema/shell"
-import { Skill } from "@opencode/schema/skill"
-import { Snapshot } from "@opencode/schema/snapshot"
-import { UsageLimits } from "@opencode/schema/usage-limits"
-import { Vcs } from "@opencode/schema/vcs"
-import { WebSearch } from "@opencode/schema/websearch"
-import { Workspace } from "@opencode/schema/workspace"
+} from "@ainvil/protocol/client"
+import { Agent } from "@ainvil/schema/agent"
+import { Artifact } from "@ainvil/schema/artifact"
+import { Command } from "@ainvil/schema/command"
+import { Config } from "@ainvil/schema/config"
+import { Credential } from "@ainvil/schema/credential"
+import { Event } from "@ainvil/schema/event"
+import { EventLog } from "@ainvil/schema/event-log"
+import { FileDiff } from "@ainvil/schema/file-diff"
+import { FileSystem } from "@ainvil/schema/filesystem"
+import { Form } from "@ainvil/schema/form"
+import { Generate } from "@ainvil/schema/generate"
+import { Instruction } from "@ainvil/schema/instruction"
+import { InstructionEntry } from "@ainvil/schema/instruction-entry"
+import { Integration } from "@ainvil/schema/integration"
+import { Job } from "@ainvil/schema/job"
+import { Location } from "@ainvil/schema/location"
+import { Mcp } from "@ainvil/schema/mcp"
+import { Model } from "@ainvil/schema/model"
+import { Money } from "@ainvil/schema/money"
+import { Permission } from "@ainvil/schema/permission"
+import { PermissionSaved } from "@ainvil/schema/permission-saved"
+import { Plugin } from "@ainvil/schema/plugin"
+import { Project } from "@ainvil/schema/project"
+import { Worktree } from "@ainvil/schema/worktree"
+import { AgentAttachment, FileAttachment, Prompt, PromptMention } from "@ainvil/schema/prompt"
+import { PromptInput } from "@ainvil/schema/prompt-input"
+import { Provider } from "@ainvil/schema/provider"
+import { Pty } from "@ainvil/schema/pty"
+import { PtyTicket } from "@ainvil/schema/pty-ticket"
+import { Question } from "@ainvil/schema/question"
+import { Reference } from "@ainvil/schema/reference"
+import { AbsolutePath, RelativePath } from "@ainvil/schema/schema"
+import { Schedule } from "@ainvil/schema/schedule"
+import { Session } from "@ainvil/schema/session"
+import { SessionMessage } from "@ainvil/schema/session-message"
+import { SessionInbox } from "@ainvil/schema/session-inbox"
+import { Shell } from "@ainvil/schema/shell"
+import { Skill } from "@ainvil/schema/skill"
+import { Snapshot } from "@ainvil/schema/snapshot"
+import { UsageLimits } from "@ainvil/schema/usage-limits"
+import { Vcs } from "@ainvil/schema/vcs"
+import { WebSearch } from "@ainvil/schema/websearch"
+import { Workspace } from "@ainvil/schema/workspace"
 import { Effect, Schema } from "effect"
 import { fileURLToPath } from "url"
 
@@ -66,54 +66,54 @@ const effectContract = compile(ClientApi, {
   aliases: true,
 })
 const effectTypeReferences = [
-  ...namespaceTypes("Agent", "@opencode/schema/agent", Agent),
-  ...namespaceTypes("Artifact", "@opencode/schema/artifact", Artifact),
-  ...namespaceTypes("Command", "@opencode/schema/command", Command),
-  ...namespaceTypes("Config", "@opencode/schema/config", Config),
-  ...namespaceTypes("Credential", "@opencode/schema/credential", Credential),
-  ...namespaceTypes("Event", "@opencode/schema/event", Event),
-  ...namespaceTypes("EventLog", "@opencode/schema/event-log", EventLog),
-  ...namespaceTypes("FileDiff", "@opencode/schema/file-diff", FileDiff),
-  ...namespaceTypes("FileSystem", "@opencode/schema/filesystem", FileSystem),
-  ...namespaceTypes("Form", "@opencode/schema/form", Form),
-  ...namespaceTypes("Generate", "@opencode/schema/generate", Generate),
-  ...namespaceTypes("Instruction", "@opencode/schema/instruction", Instruction),
-  ...namespaceTypes("InstructionEntry", "@opencode/schema/instruction-entry", InstructionEntry),
-  ...namespaceTypes("Integration", "@opencode/schema/integration", Integration),
-  ...namespaceTypes("Job", "@opencode/schema/job", Job),
-  typeReference("Location.PublicRef", "@opencode/schema/location", Location.PublicRef),
-  typeReference("Location.PublicInfo", "@opencode/schema/location", Location.PublicInfo),
-  ...namespaceTypes("Mcp", "@opencode/schema/mcp", Mcp),
-  ...namespaceTypes("Model", "@opencode/schema/model", Model),
-  ...namespaceTypes("Money", "@opencode/schema/money", Money),
-  ...namespaceTypes("Permission", "@opencode/schema/permission", Permission),
-  ...namespaceTypes("PermissionSaved", "@opencode/schema/permission-saved", PermissionSaved),
-  ...namespaceTypes("Plugin", "@opencode/schema/plugin", Plugin),
-  ...namespaceTypes("Project", "@opencode/schema/project", Project),
-  ...namespaceTypes("Worktree", "@opencode/schema/worktree", Worktree),
-  ...namespaceTypes("PromptInput", "@opencode/schema/prompt-input", PromptInput),
-  ...namespaceTypes("Provider", "@opencode/schema/provider", Provider),
-  ...namespaceTypes("Pty", "@opencode/schema/pty", Pty),
-  ...namespaceTypes("PtyTicket", "@opencode/schema/pty-ticket", PtyTicket),
-  ...namespaceTypes("Question", "@opencode/schema/question", Question),
-  ...namespaceTypes("Reference", "@opencode/schema/reference", Reference),
-  ...namespaceTypes("Schedule", "@opencode/schema/schedule", Schedule),
-  ...namespaceTypes("Session", "@opencode/schema/session", Session),
-  ...namespaceTypes("SessionMessage", "@opencode/schema/session-message", SessionMessage),
-  ...namespaceTypes("SessionInbox", "@opencode/schema/session-inbox", SessionInbox),
-  ...namespaceTypes("Shell", "@opencode/schema/shell", Shell),
-  ...namespaceTypes("Skill", "@opencode/schema/skill", Skill),
-  ...namespaceTypes("Snapshot", "@opencode/schema/snapshot", Snapshot),
-  ...namespaceTypes("UsageLimits", "@opencode/schema/usage-limits", UsageLimits),
-  ...namespaceTypes("Vcs", "@opencode/schema/vcs", Vcs),
-  ...namespaceTypes("WebSearch", "@opencode/schema/websearch", WebSearch),
-  ...namespaceTypes("Workspace", "@opencode/schema/workspace", Workspace),
-  typeReference("Prompt", "@opencode/schema/prompt", Prompt),
-  typeReference("PromptMention", "@opencode/schema/prompt", PromptMention),
-  typeReference("FileAttachment", "@opencode/schema/prompt", FileAttachment),
-  typeReference("AgentAttachment", "@opencode/schema/prompt", AgentAttachment),
-  typeReference("AbsolutePath", "@opencode/schema/schema", AbsolutePath),
-  typeReference("RelativePath", "@opencode/schema/schema", RelativePath),
+  ...namespaceTypes("Agent", "@ainvil/schema/agent", Agent),
+  ...namespaceTypes("Artifact", "@ainvil/schema/artifact", Artifact),
+  ...namespaceTypes("Command", "@ainvil/schema/command", Command),
+  ...namespaceTypes("Config", "@ainvil/schema/config", Config),
+  ...namespaceTypes("Credential", "@ainvil/schema/credential", Credential),
+  ...namespaceTypes("Event", "@ainvil/schema/event", Event),
+  ...namespaceTypes("EventLog", "@ainvil/schema/event-log", EventLog),
+  ...namespaceTypes("FileDiff", "@ainvil/schema/file-diff", FileDiff),
+  ...namespaceTypes("FileSystem", "@ainvil/schema/filesystem", FileSystem),
+  ...namespaceTypes("Form", "@ainvil/schema/form", Form),
+  ...namespaceTypes("Generate", "@ainvil/schema/generate", Generate),
+  ...namespaceTypes("Instruction", "@ainvil/schema/instruction", Instruction),
+  ...namespaceTypes("InstructionEntry", "@ainvil/schema/instruction-entry", InstructionEntry),
+  ...namespaceTypes("Integration", "@ainvil/schema/integration", Integration),
+  ...namespaceTypes("Job", "@ainvil/schema/job", Job),
+  typeReference("Location.PublicRef", "@ainvil/schema/location", Location.PublicRef),
+  typeReference("Location.PublicInfo", "@ainvil/schema/location", Location.PublicInfo),
+  ...namespaceTypes("Mcp", "@ainvil/schema/mcp", Mcp),
+  ...namespaceTypes("Model", "@ainvil/schema/model", Model),
+  ...namespaceTypes("Money", "@ainvil/schema/money", Money),
+  ...namespaceTypes("Permission", "@ainvil/schema/permission", Permission),
+  ...namespaceTypes("PermissionSaved", "@ainvil/schema/permission-saved", PermissionSaved),
+  ...namespaceTypes("Plugin", "@ainvil/schema/plugin", Plugin),
+  ...namespaceTypes("Project", "@ainvil/schema/project", Project),
+  ...namespaceTypes("Worktree", "@ainvil/schema/worktree", Worktree),
+  ...namespaceTypes("PromptInput", "@ainvil/schema/prompt-input", PromptInput),
+  ...namespaceTypes("Provider", "@ainvil/schema/provider", Provider),
+  ...namespaceTypes("Pty", "@ainvil/schema/pty", Pty),
+  ...namespaceTypes("PtyTicket", "@ainvil/schema/pty-ticket", PtyTicket),
+  ...namespaceTypes("Question", "@ainvil/schema/question", Question),
+  ...namespaceTypes("Reference", "@ainvil/schema/reference", Reference),
+  ...namespaceTypes("Schedule", "@ainvil/schema/schedule", Schedule),
+  ...namespaceTypes("Session", "@ainvil/schema/session", Session),
+  ...namespaceTypes("SessionMessage", "@ainvil/schema/session-message", SessionMessage),
+  ...namespaceTypes("SessionInbox", "@ainvil/schema/session-inbox", SessionInbox),
+  ...namespaceTypes("Shell", "@ainvil/schema/shell", Shell),
+  ...namespaceTypes("Skill", "@ainvil/schema/skill", Skill),
+  ...namespaceTypes("Snapshot", "@ainvil/schema/snapshot", Snapshot),
+  ...namespaceTypes("UsageLimits", "@ainvil/schema/usage-limits", UsageLimits),
+  ...namespaceTypes("Vcs", "@ainvil/schema/vcs", Vcs),
+  ...namespaceTypes("WebSearch", "@ainvil/schema/websearch", WebSearch),
+  ...namespaceTypes("Workspace", "@ainvil/schema/workspace", Workspace),
+  typeReference("Prompt", "@ainvil/schema/prompt", Prompt),
+  typeReference("PromptMention", "@ainvil/schema/prompt", PromptMention),
+  typeReference("FileAttachment", "@ainvil/schema/prompt", FileAttachment),
+  typeReference("AgentAttachment", "@ainvil/schema/prompt", AgentAttachment),
+  typeReference("AbsolutePath", "@ainvil/schema/schema", AbsolutePath),
+  typeReference("RelativePath", "@ainvil/schema/schema", RelativePath),
 ]
 
 await Effect.runPromise(
@@ -139,7 +139,7 @@ await Effect.runPromise(
           outputTypes: {
             "event.subscribe": {
               name: "OpenCodeEvent",
-              import: 'import type { OpenCodeEvent } from "@opencode/protocol/groups/event"',
+              import: 'import type { OpenCodeEvent } from "@ainvil/protocol/groups/event"',
             },
           },
         }),
