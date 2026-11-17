@@ -26,8 +26,12 @@ const npm = process.env.npm_execpath?.endsWith("npm-cli.js") ? [process.execPath
 const sourceBinary = platform === "windows" ? `${sourceCommand}.exe` : sourceCommand
 const targetBinary = path.resolve(directory, packageJson.bin[command])
 const dependencies = packageJson.optionalDependencies ?? {}
-const base = Object.keys(dependencies).find((name) => name.endsWith(`-${platform}-${arch}`))
-if (!base) throw new Error(`OpenCode does not provide a binary for ${platform}-${arch}`)
+// A build may ship only some variants of a platform (for example musl without glibc), so the base name
+// is derived from any variant rather than requiring the plain package to be listed.
+const suffix = `-${platform}-${arch}`
+const variant = Object.keys(dependencies).find((name) => name.endsWith(suffix) || name.includes(`${suffix}-`))
+if (!variant) throw new Error(`Ainvil does not provide a binary for ${platform}-${arch}`)
+const base = variant.slice(0, variant.indexOf(suffix) + suffix.length)
 
 function supportsAvx2() {
   if (arch !== "x64") return false
