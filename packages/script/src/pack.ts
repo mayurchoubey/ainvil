@@ -11,6 +11,7 @@ export const archiveDir = path.join(root, "dist", "archives")
 type Manifest = {
   name: string
   version: string
+  files?: string[]
   exports: Record<string, string | null>
   imports?: Record<string, Record<string, string>>
 }
@@ -61,12 +62,23 @@ export async function pack(
 
   await mkdir(npmDir, { recursive: true })
   await rm(tarball, { force: true })
-  await Bun.write(file, JSON.stringify({ ...pkg, exports, ...(imports ? { imports } : {}) }, null, 2) + "\n")
+  // The MIT license requires its text to ship with every copy; NOTICE carries the upstream attribution.
+  const legal = ["LICENSE", "NOTICE"]
+  await Bun.write(
+    file,
+    JSON.stringify(
+      { ...pkg, ...(pkg.files ? { files: [...pkg.files, ...legal] } : {}), exports, ...(imports ? { imports } : {}) },
+      null,
+      2,
+    ) + "\n",
+  )
+  await Promise.all(legal.map((name) => Bun.write(path.join(directory, name), Bun.file(path.join(root, name)))))
 
   try {
     await $`bun pm pack --destination ${npmDir}`.cwd(directory)
   } finally {
     await Bun.write(file, original)
+    await Promise.all(legal.map((name) => rm(path.join(directory, name), { force: true })))
   }
 
   return tarball

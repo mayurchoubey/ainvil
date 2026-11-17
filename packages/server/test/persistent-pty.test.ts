@@ -245,7 +245,7 @@ it.live("reports renaming as unsupported on a daemon without the rename feature"
       body: {
         _tag: "PtyFeatureUnsupportedError",
         feature: "rename",
-        message: "Terminal renaming will be available after OpenCode's terminal service restarts",
+        message: "Terminal renaming will be available after Ainvil's terminal service restarts",
       },
     })
     expect(daemon.ops).not.toContain("rename")

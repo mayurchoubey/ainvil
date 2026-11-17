@@ -81,7 +81,7 @@ async function packDistribution(input: {
         scripts: { postinstall: "node ./postinstall.mjs" },
         version,
         license: pkg.license,
-        repository: { type: "git", url: "git+https://github.com/anomalyco/opencode.git" },
+        repository: { type: "git", url: "git+https://github.com/mayurchoubey/ainvil.git" },
         os: ["darwin", "linux", "win32"],
         cpu: ["arm64", "x64"],
         optionalDependencies: binaries,
@@ -108,6 +108,12 @@ async function packDistribution(input: {
 }
 
 async function pack(directory: string) {
+  // The MIT license requires its text to ship with every copy; NOTICE carries the upstream attribution.
+  await Promise.all(
+    ["LICENSE", "NOTICE"].map((name) =>
+      Bun.write(path.join(directory, name), Bun.file(path.resolve(dir, "../..", name))),
+    ),
+  )
   if (process.platform !== "win32") await $`chmod -R 755 .`.cwd(directory)
   await $`bun pm pack --destination ${npmDir}`.cwd(directory)
 }

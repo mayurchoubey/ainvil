@@ -6,7 +6,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/anomalyco/opencode.git",
+    "url": "git+https://github.com/mayurchoubey/ainvil.git",
     "directory": "packages/protocol"
   },
   "publishConfig": {

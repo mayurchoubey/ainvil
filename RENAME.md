@@ -34,6 +34,8 @@ so the build stays green.
     `~/.opencode/bin` path used by the upstream install script; file names
     inside the data folder (`opencode-local.db`, `opencode.log`); the server
     basic-auth user name `opencode`; and the user documentation.
+- **Server suite (2026-11-17):** 124 pass, 1 skip, 0 fail after three test
+  expectations left stale by Stages C and D were updated.
 - **Stage D (wording): done for the engine and README.** CLI, terminal UI,
   server and core messages, help text, command hints and the system prompts
   say Ainvil; the README is rewritten and the translated upstream READMEs are
