@@ -17,8 +17,10 @@ so the build stays green.
   WinGet packaging, and the remote installers in `packages/gui-plugins`. These
   all point at upstream's hosting (opencode.ai, upstream npm and GitHub
   releases) and need Ainvil's own publishing targets before they can change.
-  The self-updater still queries opencode.ai; it must be repointed or disabled
-  before any Ainvil release ships.
+  The self-updater is disabled: no background check runs, `ainvil upgrade`
+  refuses and the TUI offers no update command. The remote CLI download in
+  `packages/gui-plugins` is disabled too. Packed packages reference each other
+  by GitHub release URL, and the launcher never falls back to the npm registry.
 - **Stage C (runtime namespace): done with fallback to the opencode names.**
   - Machine folders (data, config, cache, state, tmp) are `ainvil`, separate
     from any opencode install. Nothing is migrated from an opencode install.
@@ -76,7 +78,7 @@ Three distinct identities, independently renameable:
 3. **Branding/docs** — README, site links, logos, Discord/URLs. Cosmetic;
    already partly done (README banner, this file, `NOTICE`).
 
-For the downstream Toolsmith integration, only (1) strictly matters: it
+For the downstream integration, only (1) strictly matters: it
 imports `@opencode/cli` and `@opencode/client`. (2) matters only if you want
 zero `opencode` footprint at runtime.
 

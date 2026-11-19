@@ -15,18 +15,16 @@ source state behind the published `@opencode/cli@2.2.6` release (git tag
 this repository as "forked from anomalyco/opencode", so the lineage is
 explicit.
 
-Nothing from upstream has been removed or obscured. The fork retains the
-original license, copyright notice, source files, and git history. The only
-additions at the point of forking are this file, `NOTICE`, a README banner,
-and `RENAME.md`.
+The fork retains the original license, copyright notice and git history. It
+has since modified upstream files; [`RENAME.md`](RENAME.md) records what
+changed.
 
 ## Why it exists
 
-To own a coding-agent engine we can build on and ship for our own and
-clients' use, under our own name and release cadence, rather than depending on
-an upstream package we do not control. Pinning to 2.2.6 matches the version
-our current integration (Toolsmith's agent engine) is built and verified
-against.
+To own a coding-agent engine we can build on and ship under our own name and
+release cadence, rather than depending on an upstream package we do not
+control. Pinning to 2.2.6 matches the version our current integration is built
+and verified against.
 
 ## Why "pinned at 2.2.6"
 
@@ -43,7 +41,10 @@ what each stage changed and what is left. In short: packages are `@ainvil/*`,
 the command is `ainvil`, and Ainvil has its own machine folders, config file
 names and environment variable prefix, with the opencode names still accepted
 as a fallback. Engine messages and prompts say Ainvil. The documentation sites,
-app text, release pipeline and self-updater still belong to upstream.
+app text and release pipeline still belong to upstream. The self-updater is
+disabled: Ainvil never checks for or installs updates by itself, and
+`ainvil upgrade` refuses, because every update source that code knows installs
+upstream opencode.
 
 ## Maintenance you now own
 

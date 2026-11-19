@@ -190,9 +190,8 @@ const provider = (options: Options): OAuthClientProvider => {
     ...(redirect ? { state: () => redirect.state } : {}),
     clientMetadata: {
       redirect_uris: [redirectUrl],
-      client_name: "opencode",
-      client_uri: "https://opencode.ai",
-      logo_uri: "https://opencode.ai/web-app-manifest-512x512.png",
+      client_name: "Ainvil",
+      client_uri: "https://github.com/mayurchoubey/ainvil",
       grant_types: ["authorization_code", "refresh_token"],
       response_types: ["code"],
       token_endpoint_auth_method: client?.client_secret ? "client_secret_post" : "none",
@@ -550,7 +549,8 @@ export const authorize = (input: {
       submit: (pasted: string) =>
         Effect.gen(function* () {
           const text = pasted.trim()
-          if (!URL.canParse(text)) return yield* Effect.fail(new Error("Paste the full URL from the browser's address bar"))
+          if (!URL.canParse(text))
+            return yield* Effect.fail(new Error("Paste the full URL from the browser's address bar"))
           const url = new URL(text)
           if (url.searchParams.get("state") !== state)
             return yield* Effect.fail(new Error("This URL belongs to a different sign-in"))

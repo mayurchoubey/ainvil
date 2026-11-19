@@ -36,8 +36,8 @@ describe("OpenRouterPlugin", () => {
 
       expect((yield* catalog.get(Provider.ID.openrouter))?.headers).toEqual({
         Existing: "value",
-        "HTTP-Referer": "https://opencode.ai/",
-        "X-Title": "opencode",
+        "HTTP-Referer": "https://github.com/mayurchoubey/ainvil",
+        "X-Title": "Ainvil",
       })
       expect((yield* catalog.get(Provider.ID.make("nvidia")))?.headers).toBeUndefined()
     }),
@@ -58,9 +58,7 @@ describe("OpenRouterPlugin", () => {
       })
       yield* addPlugin()
 
-      expect((yield* models.get(Provider.ID.openrouter, Model.ID.make("openai/gpt-5-chat")))?.enabled).toBe(
-        false,
-      )
+      expect((yield* models.get(Provider.ID.openrouter, Model.ID.make("openai/gpt-5-chat")))?.enabled).toBe(false)
       expect((yield* models.get(Provider.ID.openrouter, Model.ID.make("openai/gpt-5")))?.enabled).toBe(true)
       expect((yield* models.get(Provider.ID.openai, Model.ID.make("openai/gpt-5-chat")))?.enabled).toBe(true)
     }),

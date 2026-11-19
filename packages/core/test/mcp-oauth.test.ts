@@ -169,7 +169,12 @@ describe("MCP OAuth", () => {
       async fetch(request) {
         if (request.method !== "POST" || new URL(request.url).pathname !== "/token")
           return new Response(null, { status: 404 })
-        return Response.json({ access_token: "access", token_type: "Bearer", refresh_token: "refresh", expires_in: 3600 })
+        return Response.json({
+          access_token: "access",
+          token_type: "Bearer",
+          refresh_token: "refresh",
+          expires_in: 3600,
+        })
       },
     })
 
@@ -202,7 +207,12 @@ describe("MCP OAuth", () => {
         if (request.method !== "POST" || new URL(request.url).pathname !== "/token")
           return new Response(null, { status: 404 })
         tokenRequests.push(new URLSearchParams(await request.text()))
-        return Response.json({ access_token: "access", token_type: "Bearer", refresh_token: "refresh", expires_in: 3600 })
+        return Response.json({
+          access_token: "access",
+          token_type: "Bearer",
+          refresh_token: "refresh",
+          expires_in: 3600,
+        })
       },
     })
 
@@ -235,10 +245,7 @@ describe("MCP OAuth", () => {
       fetch(request) {
         if (request.method !== "POST" || new URL(request.url).pathname !== "/token")
           return new Response(null, { status: 404 })
-        return Response.json(
-          { error: "invalid_client", error_description: "bad_client_secret" },
-          { status: 400 },
-        )
+        return Response.json({ error: "invalid_client", error_description: "bad_client_secret" }, { status: 400 })
       },
     })
 
@@ -647,10 +654,10 @@ describe("MCP OAuth", () => {
       expect(url.searchParams.get("client_id")).toBe("registered")
       expect(registrations).toHaveLength(1)
       expect(registrations[0]).toMatchObject({
-        client_name: "opencode",
-        client_uri: "https://opencode.ai",
-        logo_uri: "https://opencode.ai/web-app-manifest-512x512.png",
+        client_name: "Ainvil",
+        client_uri: "https://github.com/mayurchoubey/ainvil",
       })
+      expect(registrations[0]).not.toHaveProperty("logo_uri")
     })
 
     test("reuses the client registered by an earlier login", async () => {

@@ -6,7 +6,15 @@ It is an independently maintained fork of [opencode](https://github.com/anomalyc
 
 ## Status
 
-Ainvil is not published yet. There is no npm package, installer or release download, so the only way to run it today is from source.
+Ainvil is not on the npm registry and has no installer. Packages are attached to [GitHub releases](https://github.com/mayurchoubey/ainvil/releases) as tarballs that reference each other by release URL, so a project installs them by URL:
+
+```bash
+npm install https://github.com/mayurchoubey/ainvil/releases/download/<tag>/ainvil-cli-2.2.6.tgz
+```
+
+Binaries are shipped for Apple-silicon macOS and for Alpine (musl) Linux on arm64 and x64. On any other platform the install succeeds and the `ainvil` command explains that no binary is available. Nothing is ever fetched from the `@ainvil` scope on npm, which this project does not publish to.
+
+Ainvil does not update itself. `ainvil upgrade` refuses, because the only update sources in this code install upstream opencode.
 
 ## Run from source
 
@@ -33,7 +41,7 @@ bun run dev
 | Project folder | `.ainvil/` | `.opencode/` |
 | Machine folders | `~/.config/ainvil`, `~/.local/share/ainvil` and so on | not shared with opencode |
 
-Where both exist, the Ainvil name wins.
+Where both config files or project folders exist they are merged, and the Ainvil one is applied last, so its values win.
 
 ## What still belongs to upstream
 
@@ -42,7 +50,8 @@ Parts of this tree still describe or call upstream opencode and have not been ch
 - The documentation and marketing sites under `packages/web` and `services`.
 - The desktop and web app text, and the SDK type names such as `OpenCodeClient`.
 - The release workflows, the `install` script and other packaging, which publish to upstream's locations.
-- The self-updater, which asks opencode.ai for new versions. Do not ship an Ainvil release until it is repointed or disabled.
+- The model catalog, which is fetched from `models.opencode.ai`. The provider packages it names by upstream's scope are served from this build, never downloaded.
+- MCP OAuth with servers that use client ID metadata documents still presents upstream's document at opencode.ai, because Ainvil hosts none of its own.
 - Hosted services that are upstream's own, such as OpenCode Zen, OpenCode Go and the OpenCode Console. They keep their names because they are not Ainvil's.
 - Links to documentation at opencode.ai, which describes upstream and uses the opencode names.
 
