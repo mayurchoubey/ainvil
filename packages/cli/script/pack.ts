@@ -2,7 +2,7 @@
 import { $ } from "bun"
 import pkg from "../package.json"
 import { Script } from "@ainvil/script"
-import { archiveDir, npmDir } from "@ainvil/script/pack"
+import { archiveDir, npmDir, releaseUrl } from "@ainvil/script/pack"
 import { existsSync } from "fs"
 import { chmod, mkdir, rm, utimes } from "node:fs/promises"
 import path from "node:path"
@@ -84,7 +84,10 @@ async function packDistribution(input: {
         repository: { type: "git", url: "git+https://github.com/mayurchoubey/ainvil.git" },
         os: ["darwin", "linux", "win32"],
         cpu: ["arm64", "x64"],
-        optionalDependencies: binaries,
+        // Listed by release URL: nothing under these names exists on the npm registry.
+        optionalDependencies: Object.fromEntries(
+          Object.keys(binaries).map((name) => [name, releaseUrl(name, version)]),
+        ),
       },
       null,
       2,

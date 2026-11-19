@@ -72,11 +72,16 @@ fi
 printf 'OPENCODE_REMOTE_TARGET=%s\\n' "$target"
 `
 
-export function archiveUrl(target: string, version: string) {
+export function archiveUrl(target: string, version: string): string {
   if (!/^(linux|darwin)-(x64-baseline|arm64)(-musl)?$/.test(target))
     throw new Failure({ code: "platform", detail: target })
 
-  return `https://registry.npmjs.org/@ainvil/cli-${target}/-/cli-${target}-${requireVersion(version)}.tgz`
+  // Ainvil publishes no remote CLI packages. Upstream's npm name would install opencode, and the fork's own
+  // scope is not on the registry, so there is nothing safe to download and run on the remote host.
+  throw new Failure({
+    code: "install",
+    detail: `Ainvil ${requireVersion(version)} has no downloadable CLI for ${target}; install it on the host first`,
+  })
 }
 
 type Source = { type: "download"; url: string } | { type: "archive" } | { type: "installer"; binary?: string }

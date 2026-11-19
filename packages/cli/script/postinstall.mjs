@@ -11,7 +11,7 @@ const directory = path.dirname(fileURLToPath(import.meta.url))
 const require = createRequire(import.meta.url)
 const packageJson = JSON.parse(fs.readFileSync(path.join(directory, "package.json"), "utf8"))
 const command = Object.keys(packageJson.bin ?? {})[0]
-if (!command) throw new Error("OpenCode package does not declare a binary")
+if (!command) throw new Error("Ainvil package does not declare a binary")
 const sourceCommand = packageJson.opencodeSourceBinary ?? command
 
 const platform = { darwin: "darwin", linux: "linux", win32: "windows" }[os.platform()] ?? os.platform()
@@ -21,8 +21,6 @@ const arch =
   platform === "windows" && nodeArch === "x64" && process.env.PROCESSOR_IDENTIFIER?.startsWith("ARM")
     ? "arm64"
     : nodeArch
-// Windows cannot spawn npm's .cmd shim directly, so reuse the npm CLI that runs this script.
-const npm = process.env.npm_execpath?.endsWith("npm-cli.js") ? [process.execPath, process.env.npm_execpath] : ["npm"]
 const sourceBinary = platform === "windows" ? `${sourceCommand}.exe` : sourceCommand
 const targetBinary = path.resolve(directory, packageJson.bin[command])
 const dependencies = packageJson.optionalDependencies ?? {}
@@ -30,8 +28,7 @@ const dependencies = packageJson.optionalDependencies ?? {}
 // is derived from any variant rather than requiring the plain package to be listed.
 const suffix = `-${platform}-${arch}`
 const variant = Object.keys(dependencies).find((name) => name.endsWith(suffix) || name.includes(`${suffix}-`))
-if (!variant) throw new Error(`Ainvil does not provide a binary for ${platform}-${arch}`)
-const base = variant.slice(0, variant.indexOf(suffix) + suffix.length)
+const base = variant?.slice(0, variant.indexOf(suffix) + suffix.length)
 
 function supportsAvx2() {
   if (arch !== "x64") return false
@@ -132,36 +129,10 @@ function resolveBinary(name) {
   const packagePath = require.resolve(`${name}/package.json`)
   // Package managers keep an older platform package when the matching version is not yet on the registry,
   // which would silently install the previous release under the new launcher.
+  // Platform packages are listed by release URL, so the launcher's own version is the one to match.
   const version = JSON.parse(fs.readFileSync(packagePath, "utf8")).version
-  if (version !== dependencies[name]) throw new Error(`${name} is ${version}, expected ${dependencies[name]}`)
+  if (version !== packageJson.version) throw new Error(`${name} is ${version}, expected ${packageJson.version}`)
   return path.join(path.dirname(packagePath), "bin", sourceBinary)
-}
-
-function installPackage(name) {
-  const temp = fs.mkdtempSync(path.join(os.tmpdir(), "opencode-install-"))
-  try {
-    const result = childProcess.spawnSync(
-      npm[0],
-      [
-        ...npm.slice(1),
-        "install",
-        "--ignore-scripts",
-        "--no-save",
-        "--loglevel=error",
-        // npm rejects a package built for another CPU, such as arm64 under emulated x64 Node, unless forced.
-        ...(name.includes(`-${platform}-${nodeArch}`) ? [] : ["--force"]),
-        "--prefix",
-        temp,
-        `${name}@${dependencies[name]}`,
-      ],
-      { stdio: "inherit", windowsHide: true },
-    )
-    if (result.status !== 0) return false
-    copyBinary(path.join(temp, "node_modules", name, "bin", sourceBinary))
-    return true
-  } finally {
-    fs.rmSync(temp, { recursive: true, force: true })
-  }
 }
 
 function verifyBinary() {
@@ -173,25 +144,28 @@ function verifyBinary() {
   )
 }
 
+// The launcher is often a dependency of a larger application, so a platform without a working binary must not
+// fail that application's install. The command is replaced by a script that explains itself when run.
+function unavailable(reason) {
+  console.error(`Ainvil: ${reason}. The ainvil command will not run on this machine.`)
+  fs.mkdirSync(path.dirname(targetBinary), { recursive: true })
+  fs.rmSync(targetBinary, { force: true })
+  fs.writeFileSync(targetBinary, `#!/bin/sh\necho ${JSON.stringify(`Ainvil: ${reason}.`)} >&2\nexit 1\n`)
+  fs.chmodSync(targetBinary, 0o755)
+}
+
 function main() {
+  if (!base) return unavailable(`no binary for ${platform}-${arch} is shipped`)
   const names = packageNames()
   for (const name of names) {
     try {
       copyBinary(resolveBinary(name))
       if (verifyBinary()) return
-    } catch {
-      if (installPackage(name) && verifyBinary()) return
-    }
+    } catch {}
   }
-
-  throw new Error(
-    `Failed to install OpenCode. Try manually installing ${names.map((name) => JSON.stringify(name)).join(" or ")}.`,
-  )
+  // Platform packages come only from the release that ships this launcher. They are never fetched from the npm
+  // registry, where the same names could belong to someone else.
+  unavailable(`no working binary was installed from ${names.join(" or ")}`)
 }
 
-try {
-  main()
-} catch (error) {
-  console.error(error instanceof Error ? error.message : String(error))
-  process.exit(1)
-}
+main()

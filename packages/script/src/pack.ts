@@ -8,9 +8,20 @@ const root = path.resolve(import.meta.dir, "../../..")
 export const npmDir = path.join(root, "dist", "npm")
 export const archiveDir = path.join(root, "dist", "archives")
 
+/**
+ * Ainvil packages are published as GitHub release assets, not to the npm registry, so packed manifests name each
+ * other by asset URL. AINVIL_RELEASE_TAG is the release the tarballs are uploaded to.
+ */
+export function releaseUrl(name: string, version: string) {
+  const tag = process.env["AINVIL_RELEASE_TAG"]
+  if (!tag) throw new Error("AINVIL_RELEASE_TAG is required to pack")
+  return `https://github.com/mayurchoubey/ainvil/releases/download/${tag}/${name.replace("@", "").replace("/", "-")}-${version}.tgz`
+}
+
 type Manifest = {
   name: string
   version: string
+  dependencies?: Record<string, string>
   files?: string[]
   exports: Record<string, string | null>
   imports?: Record<string, Record<string, string>>
@@ -60,6 +71,14 @@ export async function pack(
       )
     : undefined
 
+  // Workspace packages are released together at one version.
+  const dependencies = Object.fromEntries(
+    Object.entries(pkg.dependencies ?? {}).map(([name, range]) => [
+      name,
+      name.startsWith("@ainvil/") ? releaseUrl(name, pkg.version) : range,
+    ]),
+  )
+
   await mkdir(npmDir, { recursive: true })
   await rm(tarball, { force: true })
   // The MIT license requires its text to ship with every copy; NOTICE carries the upstream attribution.
@@ -67,7 +86,13 @@ export async function pack(
   await Bun.write(
     file,
     JSON.stringify(
-      { ...pkg, ...(pkg.files ? { files: [...pkg.files, ...legal] } : {}), exports, ...(imports ? { imports } : {}) },
+      {
+        ...pkg,
+        ...(pkg.files ? { files: [...pkg.files, ...legal] } : {}),
+        ...(pkg.dependencies ? { dependencies } : {}),
+        exports,
+        ...(imports ? { imports } : {}),
+      },
       null,
       2,
     ) + "\n",

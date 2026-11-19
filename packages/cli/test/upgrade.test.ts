@@ -15,71 +15,22 @@ describe("upgrade command", () => {
     expect(help.stdout).toContain("-m")
   })
 
-  test("detects the installation method and resolves the latest version", async () => {
-    const result = await cli([])
-    expect(result.exitCode).toBe(0)
-    expect(result.events).toEqual(["method", { latest: "npm" }, { method: "npm", version: "0.0.0-beta-new" }])
-    expect(result.stdout).toContain("Upgrade complete")
-  })
+  // Every update source the updater knows installs upstream opencode, so the command must do nothing.
+  test.each([[[]], [["--method", "npm"]], [["2.3.4", "--method", "curl"]]])(
+    "refuses to upgrade with %j and never looks up or installs a version",
+    async (args) => {
+      const result = await cli(args)
+      expect(result.exitCode).toBe(1)
+      expect(result.events).toEqual([])
+      expect(result.stdout).toContain("Ainvil has no update service")
+      expect(result.stdout).toContain("github.com/mayurchoubey/ainvil/releases")
+    },
+  )
 
-  test("resolves the latest version for an explicit method without detection", async () => {
-    const result = await cli(["--method", "pnpm"], { UPGRADE_TEST_METHOD: "brew" })
-    expect(result.exitCode).toBe(0)
-    expect(result.events).toEqual([{ latest: "pnpm" }, { method: "pnpm", version: "0.0.0-beta-new" }])
-  })
-
-  test("accepts an explicit version and method without detection or a version lookup", async () => {
-    const result = await cli(["v0.0.0-beta-target", "--method", "pnpm"])
-    expect(result.exitCode).toBe(0)
-    expect(result.events).toEqual([{ method: "pnpm", version: "v0.0.0-beta-target" }])
-    expect(result.stdout).toContain("0.0.0-beta-old → 0.0.0-beta-target")
-  })
-
-  test("accepts the short method flag and an explicit major upgrade", async () => {
-    const result = await cli(["2.0.0", "-m", "bun"])
-    expect(result.exitCode).toBe(0)
-    expect(result.events).toEqual([{ method: "bun", version: "2.0.0" }])
-  })
-
-  test("accepts vp as an explicit installation method", async () => {
-    const result = await cli(["2.0.0", "--method", "vp"])
-    expect(result.exitCode).toBe(0)
-    expect(result.events).toEqual([{ method: "vp", version: "2.0.0" }])
-  })
-
-  test("skips the already installed version", async () => {
-    const result = await cli(["v0.0.0-beta-old"])
-    expect(result.exitCode).toBe(0)
-    expect(result.events).toEqual(["method"])
-    expect(result.stdout).toContain("already installed")
-  })
-
-  test("requires an explicit method when detection fails", async () => {
-    const result = await cli([], { UPGRADE_TEST_METHOD: "unknown" })
-    expect(result.exitCode).toBe(1)
-    expect(result.events).toEqual(["method"])
-    expect(result.stdout).toContain("Pass --method")
-  })
-
-  test("rejects unsupported methods before attempting an upgrade", async () => {
+  test("rejects unsupported methods", async () => {
     const result = await cli(["--method", "apt"])
     expect(result.exitCode).not.toBe(0)
     expect(result.events).toEqual([])
-  })
-
-  test("reports version lookup failures without installing", async () => {
-    const result = await cli([], { UPGRADE_TEST_LATEST_ERROR: "1" })
-    expect(result.exitCode).toBe(1)
-    expect(result.events).toEqual(["method", { latest: "npm" }])
-    expect(result.stdout).toContain("Update check failed")
-  })
-
-  test("reports installation failures with a nonzero exit code", async () => {
-    const result = await cli([], { UPGRADE_TEST_INSTALL_ERROR: "1" })
-    expect(result.exitCode).toBe(1)
-    expect(result.stdout).toContain("Upgrade failed")
-    expect(result.stdout).toContain("Permission denied")
-    expect(result.stdout).not.toContain("Upgrade complete")
   })
 })
 
