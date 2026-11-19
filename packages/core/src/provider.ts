@@ -28,8 +28,10 @@ export function packageName(value: string): string
 export function packageName(value: undefined): undefined
 export function packageName(value: string | undefined): string | undefined
 export function packageName(value: string | undefined) {
-  // Native provider entrypoints can persist in user configuration across the npm scope migration.
-  if (value?.startsWith("@opencode-ai/ai/")) return value.replace("@opencode-ai/", "@ainvil/")
+  // Upstream's scopes name the same native entrypoints: the live model catalog and existing user configuration
+  // use them, and left unmapped they would be installed from npm instead of loaded from this build.
+  const upstream = ["@opencode/", "@opencode-ai/"].find((scope) => value?.startsWith(`${scope}ai/`))
+  if (value && upstream) return value.replace(upstream, "@ainvil/")
   if (value === undefined || !isAISDK(value)) return value
   return value.slice(AISDK_PREFIX.length)
 }
@@ -52,10 +54,7 @@ const builtins = new Map<string, () => Promise<unknown>>([
   ["@ainvil/ai/providers/alibaba/images", () => import("@ainvil/ai/providers/alibaba/images")],
   ["@ainvil/ai/providers/amazon-bedrock", () => import("@ainvil/ai/providers/amazon-bedrock")],
   ["@ainvil/ai/providers/amazon-bedrock/mantle", () => import("@ainvil/ai/providers/amazon-bedrock/mantle")],
-  [
-    "@ainvil/ai/providers/amazon-bedrock/mantle/chat",
-    () => import("@ainvil/ai/providers/amazon-bedrock/mantle/chat"),
-  ],
+  ["@ainvil/ai/providers/amazon-bedrock/mantle/chat", () => import("@ainvil/ai/providers/amazon-bedrock/mantle/chat")],
   [
     "@ainvil/ai/providers/amazon-bedrock/mantle/messages",
     () => import("@ainvil/ai/providers/amazon-bedrock/mantle/messages"),
@@ -103,10 +102,7 @@ const builtins = new Map<string, () => Promise<unknown>>([
   ["@ainvil/ai/providers/google-vertex", () => import("@ainvil/ai/providers/google-vertex")],
   ["@ainvil/ai/providers/google-vertex/chat", () => import("@ainvil/ai/providers/google-vertex/chat")],
   ["@ainvil/ai/providers/google-vertex/gemini", () => import("@ainvil/ai/providers/google-vertex/gemini")],
-  [
-    "@ainvil/ai/providers/google-vertex/interactions",
-    () => import("@ainvil/ai/providers/google-vertex/interactions"),
-  ],
+  ["@ainvil/ai/providers/google-vertex/interactions", () => import("@ainvil/ai/providers/google-vertex/interactions")],
   ["@ainvil/ai/providers/google-vertex/messages", () => import("@ainvil/ai/providers/google-vertex/messages")],
   ["@ainvil/ai/providers/google-vertex/mistral", () => import("@ainvil/ai/providers/google-vertex/mistral")],
   ["@ainvil/ai/providers/google-vertex/responses", () => import("@ainvil/ai/providers/google-vertex/responses")],
@@ -153,10 +149,7 @@ const builtins = new Map<string, () => Promise<unknown>>([
   ["@ainvil/ai/providers/venice/responses", () => import("@ainvil/ai/providers/venice/responses")],
   ["@ainvil/ai/providers/vercel-ai-gateway", () => import("@ainvil/ai/providers/vercel-ai-gateway")],
   ["@ainvil/ai/providers/vercel-ai-gateway/chat", () => import("@ainvil/ai/providers/vercel-ai-gateway/chat")],
-  [
-    "@ainvil/ai/providers/vercel-ai-gateway/messages",
-    () => import("@ainvil/ai/providers/vercel-ai-gateway/messages"),
-  ],
+  ["@ainvil/ai/providers/vercel-ai-gateway/messages", () => import("@ainvil/ai/providers/vercel-ai-gateway/messages")],
   [
     "@ainvil/ai/providers/vercel-ai-gateway/responses",
     () => import("@ainvil/ai/providers/vercel-ai-gateway/responses"),
@@ -174,10 +167,7 @@ const builtins = new Map<string, () => Promise<unknown>>([
   ["@ainvil/ai/providers/zai-coding-plan", () => import("@ainvil/ai/providers/zai-coding-plan")],
   ["@ainvil/ai/providers/zai-coding-plan/chat", () => import("@ainvil/ai/providers/zai-coding-plan/chat")],
   ["@ainvil/ai/providers/zai-coding-plan/messages", () => import("@ainvil/ai/providers/zai-coding-plan/messages")],
-  [
-    "@ainvil/ai/providers/zai-coding-plan/responses",
-    () => import("@ainvil/ai/providers/zai-coding-plan/responses"),
-  ],
+  ["@ainvil/ai/providers/zai-coding-plan/responses", () => import("@ainvil/ai/providers/zai-coding-plan/responses")],
 ])
 
 /** Native `@ainvil/ai/providers/*` entrypoints bundled with Core and loadable by name from config. */

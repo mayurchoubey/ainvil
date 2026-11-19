@@ -281,7 +281,9 @@ function route(providerID: Provider.ID, model: SourceModel, unknown: Set<string>
 // Newer catalogs may name @ainvil/ai entrypoints that older builds don't ship, so those count as no package.
 function loadable(opencodeai: string | undefined, unknown: Set<string>) {
   const name = Provider.packageName(opencodeai)
-  if (!name?.startsWith("@ainvil/ai/") || Provider.builtinPackages.has(name)) return opencodeai
+  if (!name?.startsWith("@ainvil/ai/")) return opencodeai
+  // The normalized name, so every later comparison sees this build's scope whatever the catalog wrote.
+  if (Provider.builtinPackages.has(name)) return name
   unknown.add(name)
   return undefined
 }

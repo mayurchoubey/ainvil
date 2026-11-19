@@ -4,6 +4,12 @@ import { Effect } from "effect"
 import { Provider } from "@ainvil/core/provider"
 
 describe("Provider", () => {
+  test("loads an upstream-scoped native entrypoint from this build, never from npm", async () => {
+    const loaded = await Effect.runPromise(Provider.loadPackage("@opencode/ai/providers/openai-compatible"))
+    expect(loaded).toBe(await Effect.runPromise(Provider.loadPackage("@ainvil/ai/providers/openai-compatible")))
+    expect(Provider.packageName("@opencode/ai/providers/anthropic")).toBe("@ainvil/ai/providers/anthropic")
+  })
+
   test("bundles every native provider entrypoint that exports model()", async () => {
     const manifest = await Bun.file(path.join(import.meta.dir, "../../ai/package.json")).json()
     const entrypoints = await Promise.all(

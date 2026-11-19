@@ -106,6 +106,19 @@ it.live("interrupts pending watcher setup when the loader scope closes during mo
   }),
 )
 
+// Plugins published for upstream import its scope; they must get the host's package, not a second copy.
+it.live("serves upstream-scoped plugin imports from the host's plugin package", () =>
+  Effect.gen(function* () {
+    ensurePluginRuntime()
+    const directory = yield* tmpdirScoped()
+    const entry = path.join(directory.path, "index.ts")
+    yield* Effect.promise(() => Bun.write(entry, 'export { Plugin } from "@opencode/plugin/effect"\n'))
+    const loaded = yield* Effect.promise(() => import(entry))
+    const host = yield* Effect.promise(() => import("@ainvil/plugin/effect"))
+    expect(loaded.Plugin).toBe(host.Plugin)
+  }),
+)
+
 it.live("loads plugins and their transitive dependencies against the host's Effect and @ainvil/plugin instances", () =>
   Effect.gen(function* () {
     const directory = yield* tmpdirScoped()

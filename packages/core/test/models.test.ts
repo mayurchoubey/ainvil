@@ -439,6 +439,31 @@ describe("ModelsDev Service", () => {
     }),
   )
 
+  // models.opencode.ai names native entrypoints by upstream's scope; they must map to this build's own
+  // packages, or the engine installs upstream's from npm.
+  it.effect("maps upstream-scoped entrypoints in the catalog to this build's packages", () =>
+    Effect.gen(function* () {
+      const [acme] = yield* ModelsDev.decodeSnapshot(
+        JSON.stringify({
+          acme: {
+            ...fixture.acme,
+            models: {
+              "acme-1": sourceModel("acme-1", {
+                api: {
+                  "chat-completions": {
+                    base_url: "https://api.acme.test/v1",
+                    sdk: { opencodeai: "@opencode/ai/providers/openai-compatible" },
+                  },
+                },
+              }),
+            },
+          },
+        }),
+      )
+      expect(acme?.info.package).toBe("@ainvil/ai/providers/openai-compatible")
+    }),
+  )
+
   it.effect("skips APIs whose opencode entrypoint this build doesn't have", () =>
     Effect.gen(function* () {
       const unknown = (path: string) => ({
